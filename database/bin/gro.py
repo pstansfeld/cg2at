@@ -218,7 +218,8 @@ def minimise_protein_chain(chain, input, res_type):
 #### minimises chain
     os.chdir('MIN')
     # removed flag -nt 1
-    gromacs([g_var.args.gmx+' mdrun -v -deffnm '+res_type+'_'+input+str(chain)+' -c '+res_type+'_'+input+str(chain)+'.pdb', res_type+'_'+input+str(chain)+'.pdb'])
+#    print ("")
+    gromacs([g_var.args.gmx+' mdrun -v -deffnm '+res_type+'_'+input+str(chain)+' -c '+res_type+'_'+input+str(chain)+'.pdb -ntmpi 1', res_type+'_'+input+str(chain)+'.pdb '])
     os.chdir('..')  
 
 
@@ -343,7 +344,7 @@ def minimise_merged(residue_type, input_file):
 #### change to min directory and minimise
     os.chdir('MIN') 
     # removed flag -nt '+str(g_var.args.ncpus)+'
-    complete, success = gromacs([g_var.args.gmx+' mdrun -v -pin on -deffnm '+residue_type+'_merged_min -c ../'+residue_type+'_merged.pdb', '../'+residue_type+'_merged.pdb'])
+    complete, success = gromacs([g_var.args.gmx+' mdrun -v -pin on  -deffnm '+residue_type+'_merged_min -c ../'+residue_type+'_merged.pdb -ntmpi '+str(g_var.args.ncpus), '../'+residue_type+'_merged.pdb '])
     os.chdir(g_var.working_dir)
     return success
 
@@ -453,7 +454,7 @@ def minimise_merged_pdbs(protein):
     os.chdir('MIN')
 #### runs minimises final systems
 # removed flag -nt '+str(g_var.args.ncpus)+'
-    gromacs([g_var.args.gmx+' mdrun -v -pin on -deffnm merged_cg2at'+protein+'_minimised -c merged_cg2at'+protein+'_minimised.pdb', 'merged_cg2at'+protein+'_minimised.pdb'])
+    gromacs([g_var.args.gmx+' mdrun -v -pin on  -deffnm merged_cg2at'+protein+'_minimised -c merged_cg2at'+protein+'_minimised.pdb -ntmpi '+str(g_var.args.ncpus), 'merged_cg2at'+protein+'_minimised.pdb '])
 
    
 def write_steered_mdp(loc, posres, time, timestep):
@@ -480,9 +481,9 @@ def steer_to_aligned(protein_type, fc, input_file ):
             ' -maxwarn '+str(2), 'STEER/merged_cg2at_'+protein_type+'_steer_'+fc+'.tpr'])  
     os.chdir('STEER')
     # removed flag -nt '+str(g_var.args.ncpus)+'
-    complete, equil = gromacs([g_var.args.gmx+' mdrun -v -pin on -deffnm merged_cg2at_'+protein_type+'_steer_'+fc+
+    complete, equil = gromacs([g_var.args.gmx+' mdrun -v -pin on  -deffnm merged_cg2at_'+protein_type+'_steer_'+fc+
                                  ' -c merged_cg2at_'+protein_type+'_steer_'+fc+'.pdb -cpo merged_cg2at_'+protein_type+'_steer_'+fc+'.cpt'
-                                 ,'merged_cg2at_'+protein_type+'_steer_'+fc+'.pdb'])
+                                 ,'merged_cg2at_'+protein_type+'_steer_'+fc+'.pdb -nt '+str(g_var.args.ncpus)])
     print('{:<100}'.format(''), end='\r')
     return equil
 
@@ -507,9 +508,9 @@ def run_nvt(input_file):
             ' -maxwarn '+str(2), 'NVT/merged_cg2at_de_novo_nvt.tpr'])   
     os.chdir(g_var.merged_directory+'NVT')
     # removed flag -nt '+str(g_var.args.ncpus)+'
-    gromacs([g_var.args.gmx+' mdrun -v -pin on -deffnm merged_cg2at_de_novo_nvt'+
+    gromacs([g_var.args.gmx+' mdrun -v -pin on  -deffnm merged_cg2at_de_novo_nvt'+
             ' -c merged_cg2at_de_novo_nvt.pdb -cpo merged_cg2at_de_novo_nvt.cpt'
-            , 'merged_cg2at_de_novo_nvt.pdb'])  
+            , 'merged_cg2at_de_novo_nvt.pdb -nt '+str(g_var.args.ncpus)])  
     gen.file_copy_and_check('merged_cg2at_de_novo_nvt.pdb', g_var.final_dir+'final_cg2at_de_novo.pdb')    
     print('Completed NVT, please find final de_novo system: \n'+g_var.final_dir+'final_cg2at_de_novo.pdb')
 
