@@ -404,8 +404,10 @@ def write_merged_topol():
             for directory in g_var.np_directories+g_var.sol_directories+g_var.ion_directories:
                 residue_type_name = gen.swap_to_solvent(residue_type)
                 if os.path.exists(directory[0]+residue_type+'/'+residue_type_name+'.itp'):  
-                    if not any(residue_type_name+'.itp' in s for s in topologies_to_include):
-                        topologies_to_include.append('#include \"'+residue_type_name+'.itp\"\n')
+                    # ensure that this exact include is not yet in include list.
+                    itp_include_string = '#include \"'+residue_type_name+'.itp\"\n'
+                    if itp_include_string not in topologies_to_include:
+                        topologies_to_include.append(itp_include_string)
                         gen.file_copy_and_check(directory[0]+residue_type+'/'+residue_type_name+'.itp', residue_type_name+'.itp')
                         gen.file_copy_and_check(directory[0]+residue_type+'/'+residue_type_name+'_posre.itp', residue_type_name+'_posre.itp')
                         strip_atomtypes(residue_type_name+'.itp')
