@@ -7,7 +7,7 @@ from pathlib import Path
 
 # Single source of truth for the version string — referenced by argparse
 # below and by cg2at_header() in gen.py.
-VERSION: str = '1.0.0'
+VERSION: str = '1.0.1'
 
 if __name__ == "g_var" and 'start_dir' not in locals():
     parser = argparse.ArgumentParser(

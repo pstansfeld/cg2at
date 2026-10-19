@@ -28,19 +28,19 @@ CG2AT2 has been designed for ease of use, where for the majority of users need o
                                    <b>**INSTALL**</b>
 </p>
 
-CG2AT2 can be installed with pip directly from GitHub. This installs the <b>cg2at</b> command together with the full force field and fragment database (~155 MB).
+CG2AT2 can be installed with pip from PyPI, as <b>cg2at2</b>. This installs the <b>cg2at</b> command (also available as <b>cg2at2</b>) together with the full force field and fragment database (~155 MB).
 
 <pre>
-pip install git+https://github.com/pstansfeld/cg2at
+pip install cg2at2
 </pre>
 
 To also install the optional dependencies for trajectory-guided dihedral restraints (-refine, cg2at_refine and traj_dih_guide):
 
 <pre>
-pip install "cg2at[refine] @ git+https://github.com/pstansfeld/cg2at"
+pip install "cg2at2[refine]"
 </pre>
 
-From a local copy of the repository, <b>pip install .</b> does the same. Note that the "cg2at" package on PyPI is an unrelated project, so install from GitHub as above rather than with "pip install cg2at".
+To install the latest development version from GitHub, use <b>pip install git+https://github.com/pstansfeld/cg2at</b>; from a local copy of the repository, <b>pip install .</b> does the same. Note that the "cg2at" package on PyPI (without the 2) is an unrelated project, so use "pip install cg2at2" rather than "pip install cg2at".
 
 CG2AT2 is also available via CONDA:
 
@@ -145,7 +145,7 @@ DEPRECATED
 
 
 <p align="center">
-  <img width="500" src="database/bin/images/Fragment.png">
+  <img width="500" src="https://raw.githubusercontent.com/pstansfeld/cg2at/master/database/bin/images/Fragment.png">
 </p>
 
 This workflow allows each fragment to be treated individually, with no knowledge of what any other bead contains.
@@ -162,7 +162,7 @@ CG2AT2 roughly follows the following workflow.
 
 
 <p align="center">
-  <img width="500" src="database/bin/images/workflow_short.jpg">
+  <img width="500" src="https://raw.githubusercontent.com/pstansfeld/cg2at/master/database/bin/images/workflow_short.jpg">
 </p>
 
 <p align="center">
@@ -172,7 +172,7 @@ CG2AT2 roughly follows the following workflow.
 To correct for accidental threading of lipids tails through aromatic residues, CG2AT2 analyses the length of all bonds within the minimised system. If any bonds are greater than 0.2 nm the lipid is considered threaded. The atoms closest to the aromatic residue are then corrected and the system is minimised again.
 
 <p align="center">
-  <img width="500" src="database/bin/images/threaded.png">
+  <img width="500" src="https://raw.githubusercontent.com/pstansfeld/cg2at/master/database/bin/images/threaded.png">
 </p>
 
 
@@ -203,7 +203,7 @@ For example if you have a signal peptide linked via a flexible linker to the mai
 You can just supply the atomistic coordinates for the signal peptide and main protein and CG2AT2 will build in the linker from the de novo method.
 
 <p align="center">
-  <img width="500" src="database/bin/images/hybrid.png">
+  <img width="500" src="https://raw.githubusercontent.com/pstansfeld/cg2at/master/database/bin/images/hybrid.png">
 </p>
 
 <p align="center">
@@ -520,7 +520,7 @@ Grouping can be switched off using the flag:
 The grouping is especially useful for converting sugar groups in which the hydrogen geometry should be retained as much as possible.
 
 <p align="center">
-  <img width="500" src="database/bin/images/group_vs_mod.png">
+  <img width="500" src="https://raw.githubusercontent.com/pstansfeld/cg2at/master/database/bin/images/group_vs_mod.png">
 </p>
 
 <p align="center">
