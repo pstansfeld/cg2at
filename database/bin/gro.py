@@ -108,7 +108,10 @@ def make_min(residue):#, fragments):
 #### makes em.mdp file for each residue
     if not os.path.exists('em_'+residue+'.mdp'):
         with open('em_'+residue+'.mdp','w') as em:
-            em.write('define = -DCISRES\n integrator = steep\nnsteps = 20000\nemtol = 750\nemstep = 0.001\ncutoff-scheme = Verlet\n')
+#### CISRES only where a topology can use it (non-protein residues and the merged system):
+#### GROMACS warns about defined macros that the topology never uses
+            define = '-DCISRES' if residue in g_var.np_residues or residue == 'merged_cg2at' else ''
+            em.write('define = '+define+'\n integrator = steep\nnsteps = 20000\nemtol = 750\nemstep = 0.001\ncutoff-scheme = Verlet\n')
 
 #### Double-bond restraints. Placing rigid fragments on CG beads leaves the bonds between
 #### beads stretched or compressed, and minimising that away can rotate C=C double bonds
@@ -184,6 +187,9 @@ def write_cisres(residue_type, itp_file):
         for ai, aj, ak, al, phi, dphi in restraints:
             cisres.write('{:5d}{:5d}{:5d}{:5d}    1 {:8.2f}  {:4.1f}  1000.0\n'.format(ai, aj, ak, al, phi, dphi))
     return True
+
+#### referenced when a topology has no restraints, so the CISRES define is never reported as unused
+CISRES_UNUSED = '#ifdef CISRES\n; no double-bond or ring restraints\n#endif\n'
 
 def cisres_include(residue_type):
     return '#ifdef CISRES\n#include \"'+cisres_itp_name(residue_type)+'\"\n#endif\n'
@@ -417,8 +423,11 @@ def write_topol(residue_type, residue_number, chain):
                 if os.path.exists(directory[0]+residue_type+'/'+gen.swap_to_solvent(residue_type)+'.itp'):
                     itp_file = directory[0]+residue_type+'/'+gen.swap_to_solvent(residue_type)+'.itp'
                     topol_write.write('#include \"'+itp_file+'\"')
-                    if residue_type in g_var.np_residues and write_cisres(residue_type, itp_file):
-                        topol_write.write('\n'+cisres_include(residue_type))
+                    if residue_type in g_var.np_residues:
+                        if write_cisres(residue_type, itp_file):
+                            topol_write.write('\n'+cisres_include(residue_type))
+                        else:
+                            topol_write.write('\n'+CISRES_UNUSED)
                     found=True
                     break
             if not found:
@@ -544,6 +553,8 @@ def write_merged_topol():
             topol_write.write('; Include force field parameters\n#include \"../FINAL/'+g_var.forcefield+'/forcefield.itp\"\n')
         for line in topologies_to_include:
             topol_write.write(line)
+        if not any('CISRES' in line for line in topologies_to_include):
+            topol_write.write(CISRES_UNUSED)
 
         topol_write.write('[ system ]\n; Name\nSomething clever....\n\n[ molecules ]\n; Compound        #mols\n')
     #### adds number of residues to the topology
@@ -556,6 +567,13 @@ def write_merged_topol():
                     topol_write.write(residue_type+'_'+str(unit)+'    1\n')    
         topol_write.write('\n#ifdef DISRES\n#include \"PROTEIN_disres.itp\"\n#endif')
 
+
+def require_output(output, step, log):
+#### a GROMACS step that later stages depend on must have written its output; otherwise stop
+#### with the log to read rather than carrying on and reporting success
+    if not os.path.exists(output):
+        raise GromacsError(step+' failed: GROMACS did not write '+output+'.\n'
+                           'See '+os.path.join(os.getcwd(), log)+' and '+os.path.join(os.getcwd(), 'gromacs_outputs'))
 
 def minimise_merged_pdbs(protein):
     print('\nMinimising merged atomistic files : '+protein[1:])
@@ -573,6 +591,7 @@ def minimise_merged_pdbs(protein):
 #### runs minimises final systems
 # removed flag -nt '+str(g_var.args.ncpus)+'
     gromacs([g_var.args.gmx+' mdrun -ntmpi 1 -v -pin on -deffnm merged_cg2at'+protein+'_minimised -c merged_cg2at'+protein+'_minimised.pdb', 'merged_cg2at'+protein+'_minimised.pdb'])
+    require_output('merged_cg2at'+protein+'_minimised.pdb', 'Minimisation of the merged system', 'merged_cg2at'+protein+'_minimised.log')
 
    
 def write_steered_mdp(loc, posres, time, timestep):
@@ -631,6 +650,7 @@ def run_nvt(input_file):
     gromacs([g_var.args.gmx+' mdrun -ntmpi 1 -v -pin on -deffnm merged_cg2at_de_novo_nvt'+
             ' -c merged_cg2at_de_novo_nvt.pdb -cpo merged_cg2at_de_novo_nvt.cpt'
             , 'merged_cg2at_de_novo_nvt.pdb'])  
+    require_output('merged_cg2at_de_novo_nvt.pdb', 'NVT of the de novo system', 'merged_cg2at_de_novo_nvt.log')
     gen.file_copy_and_check('merged_cg2at_de_novo_nvt.pdb', g_var.final_dir+'final_cg2at_de_novo.pdb')    
     print('Completed NVT, please find final de_novo system: \n'+g_var.final_dir+'final_cg2at_de_novo.pdb')
 
