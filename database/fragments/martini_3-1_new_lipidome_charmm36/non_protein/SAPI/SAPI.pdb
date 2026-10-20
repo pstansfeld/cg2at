@@ -1,0 +1,160 @@
+[ C1 ]
+ATOM      1  C12 SAPI    1       3.011   0.663   2.697  1.00  0.00      SAPI
+ATOM      2  H2  SAPI    1       2.738   1.658   2.287  1.00  0.00      SAPI
+ATOM      3  O2  SAPI    1       3.927   0.021   1.847  1.00  0.00      SAPI
+ATOM      4  HO2 SAPI    1       3.790  -0.920   1.973  1.00  0.00      SAPI
+[ C2 ]
+ATOM      5  C13 SAPI    1       3.550   1.004   4.047  1.00  0.00      SAPI
+ATOM      6  H3  SAPI    1       2.753   1.534   4.611  1.00  0.00      SAPI
+ATOM      7  O3  SAPI    1       4.701   1.738   3.903  1.00  0.00      SAPI
+ATOM      8  HO3 SAPI    1       5.285   1.555   3.163  1.00  0.00      SAPI
+ATOM      9  C14 SAPI    1       3.855  -0.219   4.906  1.00  0.00      SAPI
+ATOM     10  H4  SAPI    1       4.637  -0.901   4.509  1.00  0.00      SAPI
+ATOM     11  O4  SAPI    1       4.281   0.211   6.171  1.00  0.00      SAPI
+ATOM     12  HO4 SAPI    1       5.187   0.524   6.112  1.00  0.00      SAPI
+[ C3 ]
+ATOM     13  C15 SAPI    1       2.595  -1.074   5.014  1.00  0.00      SAPI
+ATOM     14  H5  SAPI    1       1.849  -0.475   5.579  1.00  0.00      SAPI
+ATOM     15  O5  SAPI    1       2.969  -2.174   5.777  1.00  0.00      SAPI
+ATOM     16  HO5 SAPI    1       2.970  -2.894   5.142  1.00  0.00      SAPI
+ATOM     17  C16 SAPI    1       2.029  -1.460   3.624  1.00  0.00      SAPI
+ATOM     18  H6  SAPI    1       2.758  -2.084   3.064  1.00  0.00      SAPI
+ATOM     19  O6  SAPI    1       0.888  -2.226   3.862  1.00  0.00      SAPI
+ATOM     20  HO6 SAPI    1       0.323  -1.846   4.539  1.00  0.00      SAPI
+[ C4 ]
+ATOM     21  C11 SAPI    1       1.714  -0.212   2.891  1.00  0.00      SAPI
+ATOM     22  H1  SAPI    1       0.993   0.409   3.465  1.00  0.00      SAPI
+[ PO4 ]
+ATOM     23  P   SAPI    1      -0.129   0.347   1.164  1.00  0.00      SAPI
+ATOM     24  O13 SAPI    1       0.376   1.721   0.871  1.00  0.00      SAPI
+ATOM     25  O14 SAPI    1      -1.177   0.252   2.258  1.00  0.00      SAPI
+ATOM     26  O12 SAPI    1       1.212  -0.548   1.621  1.00  0.00      SAPI
+ATOM     27  O11 SAPI    1      -0.616  -0.286  -0.225  1.00  0.00      SAPI
+[ GL1 ]
+ATOM     28  C1  SAPI    1       0.310  -0.639  -1.211  1.00  0.00      SAPI
+ATOM     29  HA  SAPI    1       1.049   0.177  -1.362  1.00  0.00      SAPI
+ATOM     30  HB  SAPI    1       0.873  -1.571  -0.990  1.00  0.00      SAPI
+ATOM     31  C2  SAPI    1      -0.437  -0.987  -2.553  1.00  0.00      SAPI
+ATOM     32  HS  SAPI    1       0.283  -1.250  -3.357  1.00  0.00      SAPI
+ATOM     33  O21 SAPI    1      -1.310   0.114  -2.949  1.00  0.00      SAPI
+ATOM     34  C21 SAPI    1      -0.710   1.235  -3.323  1.00  0.00      SAPI
+ATOM     35  O22 SAPI    1       0.489   1.423  -3.380  1.00  0.00      SAPI
+[ GL2 ]
+ATOM     36  C3  SAPI    1      -1.309  -2.289  -2.464  1.00  0.00      SAPI
+ATOM     37  HX  SAPI    1      -1.764  -2.347  -1.452  1.00  0.00      SAPI
+ATOM     38  HY  SAPI    1      -0.587  -3.117  -2.630  1.00  0.00      SAPI
+ATOM     39  O31 SAPI    1      -2.297  -2.194  -3.519  1.00  0.00      SAPI
+ATOM     40  C31 SAPI    1      -1.908  -2.847  -4.663  1.00  0.00      SAPI
+ATOM     41  O32 SAPI    1      -1.046  -3.716  -4.764  1.00  0.00      SAPI
+[ C1A ]
+ATOM     42  C22 SAPI    1      -1.795   2.258  -3.654  1.00  0.00      SAPI
+ATOM     43  H2R SAPI    1      -2.589   2.126  -2.888  1.00  0.00      SAPI
+ATOM     44  H2S SAPI    1      -1.423   3.305  -3.679  1.00  0.00      SAPI
+ATOM     45  C23 SAPI    1      -2.350   1.930  -4.997  1.00  0.00      SAPI
+ATOM     46  H3R SAPI    1      -3.008   1.037  -4.946  1.00  0.00      SAPI
+ATOM     47  H3S SAPI    1      -1.506   1.610  -5.645  1.00  0.00      SAPI
+ATOM     48  C24 SAPI    1      -3.142   3.209  -5.567  1.00  0.00      SAPI
+ATOM     49  H4R SAPI    1      -2.420   4.016  -5.694  1.00  0.00      SAPI
+ATOM     50  H4S SAPI    1      -3.883   3.498  -4.822  1.00  0.00      SAPI
+[ D2A ]
+ATOM     51  C25 SAPI    1      -3.856   3.028  -6.874  1.00  0.00      SAPI
+ATOM     52  H5R SAPI    1      -4.941   2.945  -6.806  1.00  0.00      SAPI
+ATOM     53  C26 SAPI    1      -3.350   2.955  -8.112  1.00  0.00      SAPI
+ATOM     54  H6R SAPI    1      -4.082   2.820  -8.909  1.00  0.00      SAPI
+ATOM     55  C27 SAPI    1      -1.920   3.032  -8.558  1.00  0.00      SAPI
+ATOM     56  H7R SAPI    1      -1.347   3.561  -7.797  1.00  0.00      SAPI
+ATOM     57  H7S SAPI    1      -1.878   3.586  -9.496  1.00  0.00      SAPI
+ATOM     58  C28 SAPI    1      -1.270   1.619  -8.782  1.00  0.00      SAPI
+ATOM     59  H8R SAPI    1      -1.294   0.967  -7.896  1.00  0.00      SAPI
+[ D3A ]
+ATOM     60  C29 SAPI    1      -0.777   1.179  -9.886  1.00  0.00      SAPI
+ATOM     61  H9R SAPI    1      -0.395   0.155 -10.011  1.00  0.00      SAPI
+ATOM     62 C210 SAPI    1      -0.715   2.000 -11.218  1.00  0.00      SAPI
+ATOM     63 H10R SAPI    1      -1.197   2.998 -11.139  1.00  0.00      SAPI
+ATOM     64 H10S SAPI    1      -1.140   1.468 -12.096  1.00  0.00      SAPI
+ATOM     65 C211 SAPI    1       0.725   2.368 -11.518  1.00  0.00      SAPI
+ATOM     66 H11R SAPI    1       1.157   3.096 -10.814  1.00  0.00      SAPI
+ATOM     67 C212 SAPI    1       1.675   1.850 -12.450  1.00  0.00      SAPI
+ATOM     68 H12R SAPI    1       2.548   2.513 -12.536  1.00  0.00      SAPI
+[ D4A ]
+ATOM     69 C213 SAPI    1       1.609   0.694 -13.470  1.00  0.00      SAPI
+ATOM     70 H13R SAPI    1       1.888  -0.255 -12.964  1.00  0.00      SAPI
+ATOM     71 H13S SAPI    1       2.341   0.855 -14.290  1.00  0.00      SAPI
+ATOM     72 C214 SAPI    1       0.286   0.390 -14.208  1.00  0.00      SAPI
+ATOM     73 H14R SAPI    1      -0.003  -0.657 -14.031  1.00  0.00      SAPI
+ATOM     74 C215 SAPI    1      -0.257   1.207 -15.110  1.00  0.00      SAPI
+ATOM     75 H15R SAPI    1      -1.131   1.039 -15.757  1.00  0.00      SAPI
+ATOM     76 C216 SAPI    1       0.351   2.553 -15.512  1.00  0.00      SAPI
+ATOM     77 H16R SAPI    1       1.080   2.964 -14.780  1.00  0.00      SAPI
+ATOM     78 H16S SAPI    1      -0.476   3.259 -15.739  1.00  0.00      SAPI
+[ C5A ]
+ATOM     79 C217 SAPI    1       1.235   2.515 -16.803  1.00  0.00      SAPI
+ATOM     80 H17R SAPI    1       2.260   2.145 -16.588  1.00  0.00      SAPI
+ATOM     81 H17S SAPI    1       1.381   3.499 -17.299  1.00  0.00      SAPI
+ATOM     82 C218 SAPI    1       0.577   1.579 -17.860  1.00  0.00      SAPI
+ATOM     83 H18R SAPI    1       0.772   2.044 -18.850  1.00  0.00      SAPI
+ATOM     84 H18S SAPI    1      -0.524   1.463 -17.952  1.00  0.00      SAPI
+ATOM     85 C219 SAPI    1       1.216   0.204 -18.080  1.00  0.00      SAPI
+ATOM     86 H19R SAPI    1       0.482  -0.502 -18.525  1.00  0.00      SAPI
+ATOM     87 H19S SAPI    1       1.424  -0.206 -17.068  1.00  0.00      SAPI
+ATOM     88 C220 SAPI    1       2.439   0.188 -18.943  1.00  0.00      SAPI
+ATOM     89 H20R SAPI    1       3.085   1.082 -18.807  1.00  0.00      SAPI
+ATOM     90 H20S SAPI    1       2.188   0.245 -20.024  1.00  0.00      SAPI
+ATOM     91 H20T SAPI    1       2.974  -0.777 -18.815  1.00  0.00      SAPI
+[ C1B ]
+ATOM     92  C32 SAPI    1      -2.775  -2.326  -5.819  1.00  0.00      SAPI
+ATOM     93  H2X SAPI    1      -2.445  -1.273  -5.941  1.00  0.00      SAPI
+ATOM     94  H2Y SAPI    1      -3.875  -2.378  -5.674  1.00  0.00      SAPI
+ATOM     95  C33 SAPI    1      -2.354  -3.034  -7.040  1.00  0.00      SAPI
+ATOM     96  H3X SAPI    1      -2.757  -4.065  -6.953  1.00  0.00      SAPI
+ATOM     97  H3Y SAPI    1      -1.260  -3.226  -6.993  1.00  0.00      SAPI
+ATOM     98  C34 SAPI    1      -2.610  -2.330  -8.414  1.00  0.00      SAPI
+ATOM     99  H4X SAPI    1      -2.088  -2.803  -9.272  1.00  0.00      SAPI
+ATOM    100  H4Y SAPI    1      -2.203  -1.310  -8.251  1.00  0.00      SAPI
+ATOM    101  C35 SAPI    1      -4.073  -2.434  -8.769  1.00  0.00      SAPI
+ATOM    102  H5X SAPI    1      -4.628  -1.691  -8.158  1.00  0.00      SAPI
+ATOM    103  H5Y SAPI    1      -4.520  -3.445  -8.655  1.00  0.00      SAPI
+ATOM    104  C36 SAPI    1      -4.328  -2.136 -10.276  1.00  0.00      SAPI
+ATOM    105  H6X SAPI    1      -4.098  -1.070 -10.488  1.00  0.00      SAPI
+ATOM    106  H6Y SAPI    1      -5.426  -2.296 -10.341  1.00  0.00      SAPI
+[ C2B ]
+ATOM    107  C37 SAPI    1      -3.874  -3.215 -11.244  1.00  0.00      SAPI
+ATOM    108  H7X SAPI    1      -4.548  -3.326 -12.120  1.00  0.00      SAPI
+ATOM    109  H7Y SAPI    1      -3.821  -4.215 -10.762  1.00  0.00      SAPI
+ATOM    110  C38 SAPI    1      -2.576  -2.822 -11.978  1.00  0.00      SAPI
+ATOM    111  H8X SAPI    1      -1.679  -2.957 -11.336  1.00  0.00      SAPI
+ATOM    112  H8Y SAPI    1      -2.708  -1.809 -12.415  1.00  0.00      SAPI
+ATOM    113  C39 SAPI    1      -2.525  -3.722 -13.202  1.00  0.00      SAPI
+ATOM    114  H9X SAPI    1      -3.455  -3.600 -13.797  1.00  0.00      SAPI
+ATOM    115  H9Y SAPI    1      -2.449  -4.794 -12.919  1.00  0.00      SAPI
+ATOM    116 C310 SAPI    1      -1.307  -3.301 -14.045  1.00  0.00      SAPI
+ATOM    117 H10X SAPI    1      -0.336  -3.286 -13.504  1.00  0.00      SAPI
+ATOM    118 H10Y SAPI    1      -1.500  -2.288 -14.457  1.00  0.00      SAPI
+[ C3B ]
+ATOM    119 C311 SAPI    1      -1.219  -4.200 -15.306  1.00  0.00      SAPI
+ATOM    120 H11X SAPI    1      -2.208  -4.138 -15.808  1.00  0.00      SAPI
+ATOM    121 H11Y SAPI    1      -1.075  -5.224 -14.900  1.00  0.00      SAPI
+ATOM    122 C312 SAPI    1      -0.071  -3.621 -16.115  1.00  0.00      SAPI
+ATOM    123 H12X SAPI    1       0.597  -3.038 -15.445  1.00  0.00      SAPI
+ATOM    124 H12Y SAPI    1      -0.496  -2.899 -16.844  1.00  0.00      SAPI
+ATOM    125 C313 SAPI    1       0.696  -4.784 -16.748  1.00  0.00      SAPI
+ATOM    126 H13X SAPI    1       0.127  -5.339 -17.524  1.00  0.00      SAPI
+ATOM    127 H13Y SAPI    1       1.063  -5.554 -16.036  1.00  0.00      SAPI
+ATOM    128 C314 SAPI    1       2.014  -4.326 -17.411  1.00  0.00      SAPI
+ATOM    129 H14X SAPI    1       2.703  -5.185 -17.558  1.00  0.00      SAPI
+ATOM    130 H14Y SAPI    1       2.630  -3.650 -16.781  1.00  0.00      SAPI
+[ C4B ]
+ATOM    131 C315 SAPI    1       1.822  -3.596 -18.825  1.00  0.00      SAPI
+ATOM    132 H15X SAPI    1       2.833  -3.311 -19.186  1.00  0.00      SAPI
+ATOM    133 H15Y SAPI    1       1.179  -2.709 -18.639  1.00  0.00      SAPI
+ATOM    134 C316 SAPI    1       1.242  -4.507 -19.915  1.00  0.00      SAPI
+ATOM    135 H16X SAPI    1       0.150  -4.568 -19.722  1.00  0.00      SAPI
+ATOM    136 H16Y SAPI    1       1.653  -5.539 -19.889  1.00  0.00      SAPI
+ATOM    137 C317 SAPI    1       1.497  -4.077 -21.410  1.00  0.00      SAPI
+ATOM    138 H17X SAPI    1       2.602  -4.159 -21.488  1.00  0.00      SAPI
+ATOM    139 H17Y SAPI    1       1.177  -3.021 -21.543  1.00  0.00      SAPI
+ATOM    140 C318 SAPI    1       0.923  -4.901 -22.449  1.00  0.00      SAPI
+ATOM    141 H18X SAPI    1       1.031  -4.493 -23.478  1.00  0.00      SAPI
+ATOM    142 H18Y SAPI    1      -0.127  -5.186 -22.228  1.00  0.00      SAPI
+ATOM    143 H18Z SAPI    1       1.448  -5.876 -22.532  1.00  0.00      SAPI
+END

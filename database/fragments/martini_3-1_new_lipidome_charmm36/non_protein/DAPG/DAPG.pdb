@@ -1,0 +1,146 @@
+[ GL0 ]
+ATOM      1  C13 DAPG    1      -3.083  -0.436   0.434  1.00  0.00      DAPG
+ATOM      2 H13A DAPG    1      -3.989  -0.928   0.020  1.00  0.00      DAPG
+ATOM      3 H13B DAPG    1      -3.399   0.319   1.185  1.00  0.00      DAPG
+ATOM      4  OC3 DAPG    1      -2.267  -1.452   1.019  1.00  0.00      DAPG
+ATOM      5  HO3 DAPG    1      -1.936  -2.009   0.311  1.00  0.00      DAPG
+ATOM      6  C12 DAPG    1      -2.181   0.382  -0.549  1.00  0.00      DAPG
+ATOM      7 H12A DAPG    1      -2.764   1.256  -0.915  1.00  0.00      DAPG
+ATOM      8  OC2 DAPG    1      -1.845  -0.421  -1.676  1.00  0.00      DAPG
+ATOM      9  HO2 DAPG    1      -2.662  -0.420  -2.228  1.00  0.00      DAPG
+ATOM     10  C11 DAPG    1      -0.863   0.985  -0.036  1.00  0.00      DAPG
+ATOM     11 H11A DAPG    1      -1.135   1.719   0.752  1.00  0.00      DAPG
+ATOM     12 H11B DAPG    1      -0.425   1.570  -0.873  1.00  0.00      DAPG
+[ PO4 ]
+ATOM     13  P   DAPG    1       1.517  -0.116   0.086  1.00  0.00      DAPG
+ATOM     14  O13 DAPG    1       2.048  -1.396   0.549  1.00  0.00      DAPG
+ATOM     15  O14 DAPG    1       2.110   1.156   0.502  1.00  0.00      DAPG
+ATOM     16  O12 DAPG    1       0.012  -0.013   0.528  1.00  0.00      DAPG
+ATOM     17  O11 DAPG    1       1.402  -0.112  -1.478  1.00  0.00      DAPG
+[ GL1 ]
+ATOM     18  C1  DAPG    1       0.945  -1.231  -2.185  1.00  0.00      DAPG
+ATOM     19  HA  DAPG    1       0.360  -1.881  -1.500  1.00  0.00      DAPG
+ATOM     20  HB  DAPG    1       1.893  -1.729  -2.481  1.00  0.00      DAPG
+ATOM     21  C2  DAPG    1       0.199  -1.014  -3.488  1.00  0.00      DAPG
+ATOM     22  HS  DAPG    1      -0.860  -1.030  -3.153  1.00  0.00      DAPG
+ATOM     23  O21 DAPG    1       0.422  -2.047  -4.490  1.00  0.00      DAPG
+ATOM     24  C21 DAPG    1      -0.457  -2.949  -4.620  1.00  0.00      DAPG
+ATOM     25  O22 DAPG    1      -1.304  -3.339  -3.813  1.00  0.00      DAPG
+[ GL2 ]
+ATOM     26  C3  DAPG    1       0.469   0.391  -4.249  1.00  0.00      DAPG
+ATOM     27  HX  DAPG    1       1.518   0.426  -4.613  1.00  0.00      DAPG
+ATOM     28  HY  DAPG    1       0.317   1.228  -3.534  1.00  0.00      DAPG
+ATOM     29  O31 DAPG    1      -0.350   0.557  -5.417  1.00  0.00      DAPG
+ATOM     30  C31 DAPG    1      -1.477   1.370  -5.307  1.00  0.00      DAPG
+ATOM     31  O32 DAPG    1      -1.730   2.017  -4.313  1.00  0.00      DAPG
+[ C1A ]
+ATOM     32  C22 DAPG    1      -0.224  -3.631  -5.984  1.00  0.00      DAPG
+ATOM     33  H2R DAPG    1      -1.274  -3.796  -6.308  1.00  0.00      DAPG
+ATOM     34  H2S DAPG    1       0.315  -4.586  -5.807  1.00  0.00      DAPG
+ATOM     35  C23 DAPG    1       0.321  -2.753  -7.084  1.00  0.00      DAPG
+ATOM     36  H3R DAPG    1       1.272  -2.239  -6.824  1.00  0.00      DAPG
+ATOM     37  H3S DAPG    1      -0.428  -1.936  -7.162  1.00  0.00      DAPG
+ATOM     38  C24 DAPG    1       0.388  -3.418  -8.502  1.00  0.00      DAPG
+ATOM     39  H4R DAPG    1       0.340  -2.593  -9.213  1.00  0.00      DAPG
+ATOM     40  H4S DAPG    1      -0.516  -4.021  -8.584  1.00  0.00      DAPG
+[ D2A ]
+ATOM     41  C25 DAPG    1       1.502  -4.299  -8.985  1.00  0.00      DAPG
+ATOM     42  H5R DAPG    1       1.768  -5.156  -8.367  1.00  0.00      DAPG
+ATOM     43  C26 DAPG    1       2.197  -4.114 -10.115  1.00  0.00      DAPG
+ATOM     44  H6R DAPG    1       2.983  -4.834 -10.345  1.00  0.00      DAPG
+ATOM     45  C27 DAPG    1       1.979  -2.996 -11.091  1.00  0.00      DAPG
+ATOM     46  H7R DAPG    1       1.347  -2.265 -10.587  1.00  0.00      DAPG
+ATOM     47  H7S DAPG    1       1.438  -3.423 -11.935  1.00  0.00      DAPG
+ATOM     48  C28 DAPG    1       3.123  -2.241 -11.663  1.00  0.00      DAPG
+ATOM     49  H8R DAPG    1       3.739  -1.652 -10.968  1.00  0.00      DAPG
+[ D3A ]
+ATOM     50  C29 DAPG    1       3.417  -2.100 -12.980  1.00  0.00      DAPG
+ATOM     51  H9R DAPG    1       4.227  -1.399 -13.232  1.00  0.00      DAPG
+ATOM     52 C210 DAPG    1       2.580  -2.731 -14.073  1.00  0.00      DAPG
+ATOM     53 H10R DAPG    1       2.393  -1.891 -14.775  1.00  0.00      DAPG
+ATOM     54 H10S DAPG    1       1.584  -3.156 -13.826  1.00  0.00      DAPG
+ATOM     55 C211 DAPG    1       3.342  -3.611 -15.086  1.00  0.00      DAPG
+ATOM     56 H11R DAPG    1       4.357  -3.900 -14.775  1.00  0.00      DAPG
+ATOM     57 C212 DAPG    1       2.842  -3.985 -16.279  1.00  0.00      DAPG
+ATOM     58 H12R DAPG    1       3.417  -4.623 -16.966  1.00  0.00      DAPG
+[ D4A ]
+ATOM     59 C213 DAPG    1       1.476  -3.589 -16.770  1.00  0.00      DAPG
+ATOM     60 H13R DAPG    1       1.195  -2.651 -16.245  1.00  0.00      DAPG
+ATOM     61 H13S DAPG    1       0.662  -4.325 -16.593  1.00  0.00      DAPG
+ATOM     62 C214 DAPG    1       1.799  -3.252 -18.267  1.00  0.00      DAPG
+ATOM     63 H14R DAPG    1       1.794  -4.155 -18.895  1.00  0.00      DAPG
+ATOM     64 C215 DAPG    1       2.006  -1.970 -18.800  1.00  0.00      DAPG
+ATOM     65 H15R DAPG    1       2.095  -1.861 -19.891  1.00  0.00      DAPG
+ATOM     66 C216 DAPG    1       1.960  -0.704 -18.006  1.00  0.00      DAPG
+ATOM     67 H16R DAPG    1       2.448  -0.790 -17.012  1.00  0.00      DAPG
+ATOM     68 H16S DAPG    1       0.922  -0.328 -17.883  1.00  0.00      DAPG
+[ C5A ]
+ATOM     69 C217 DAPG    1       2.649   0.382 -18.798  1.00  0.00      DAPG
+ATOM     70 H17R DAPG    1       2.260   0.361 -19.839  1.00  0.00      DAPG
+ATOM     71 H17S DAPG    1       3.748   0.304 -18.941  1.00  0.00      DAPG
+ATOM     72 C218 DAPG    1       2.402   1.804 -18.221  1.00  0.00      DAPG
+ATOM     73 H18R DAPG    1       1.378   1.957 -17.819  1.00  0.00      DAPG
+ATOM     74 H18S DAPG    1       2.504   2.554 -19.034  1.00  0.00      DAPG
+ATOM     75 C219 DAPG    1       3.374   2.091 -17.063  1.00  0.00      DAPG
+ATOM     76 H19R DAPG    1       4.445   1.962 -17.327  1.00  0.00      DAPG
+ATOM     77 H19S DAPG    1       3.166   1.438 -16.189  1.00  0.00      DAPG
+ATOM     78 C220 DAPG    1       3.240   3.492 -16.491  1.00  0.00      DAPG
+ATOM     79 H20R DAPG    1       2.188   3.757 -16.252  1.00  0.00      DAPG
+ATOM     80 H20S DAPG    1       3.703   4.122 -17.280  1.00  0.00      DAPG
+ATOM     81 H20T DAPG    1       3.813   3.443 -15.540  1.00  0.00      DAPG
+[ C1B ]
+ATOM     82  C32 DAPG    1      -2.204   1.452  -6.638  1.00  0.00      DAPG
+ATOM     83  H2X DAPG    1      -3.233   1.870  -6.592  1.00  0.00      DAPG
+ATOM     84  H2Y DAPG    1      -2.225   0.376  -6.912  1.00  0.00      DAPG
+ATOM     85  C33 DAPG    1      -1.372   2.285  -7.656  1.00  0.00      DAPG
+ATOM     86  H3X DAPG    1      -0.323   1.951  -7.804  1.00  0.00      DAPG
+ATOM     87  H3Y DAPG    1      -1.200   3.323  -7.299  1.00  0.00      DAPG
+ATOM     88  C34 DAPG    1      -2.089   2.472  -9.028  1.00  0.00      DAPG
+ATOM     89  H4X DAPG    1      -2.904   3.180  -8.875  1.00  0.00      DAPG
+ATOM     90  H4Y DAPG    1      -2.498   1.503  -9.316  1.00  0.00      DAPG
+[ D2B ]
+ATOM     91  C35 DAPG    1      -1.271   2.973 -10.181  1.00  0.00      DAPG
+ATOM     92  H5X DAPG    1      -1.477   3.994 -10.501  1.00  0.00      DAPG
+ATOM     93  C36 DAPG    1      -0.319   2.327 -10.868  1.00  0.00      DAPG
+ATOM     94  H6X DAPG    1       0.149   2.890 -11.675  1.00  0.00      DAPG
+ATOM     95  C37 DAPG    1       0.185   0.928 -10.670  1.00  0.00      DAPG
+ATOM     96  H7X DAPG    1      -0.002   0.628  -9.639  1.00  0.00      DAPG
+ATOM     97  H7Y DAPG    1       1.257   0.907 -10.867  1.00  0.00      DAPG
+ATOM     98  C38 DAPG    1      -0.491  -0.030 -11.581  1.00  0.00      DAPG
+ATOM     99  H8X DAPG    1      -1.236  -0.693 -11.116  1.00  0.00      DAPG
+[ D3B ]
+ATOM    100  C39 DAPG    1      -0.375  -0.199 -12.870  1.00  0.00      DAPG
+ATOM    101  H9X DAPG    1      -1.016  -1.026 -13.209  1.00  0.00      DAPG
+ATOM    102 C310 DAPG    1       0.490   0.459 -13.899  1.00  0.00      DAPG
+ATOM    103 H10X DAPG    1       1.472  -0.049 -13.792  1.00  0.00      DAPG
+ATOM    104 H10Y DAPG    1       0.714   1.511 -13.621  1.00  0.00      DAPG
+ATOM    105 C311 DAPG    1      -0.034   0.465 -15.293  1.00  0.00      DAPG
+ATOM    106 H11X DAPG    1      -0.158  -0.547 -15.705  1.00  0.00      DAPG
+ATOM    107 C312 DAPG    1      -0.573   1.498 -16.061  1.00  0.00      DAPG
+ATOM    108 H12X DAPG    1      -0.984   1.293 -17.061  1.00  0.00      DAPG
+[ D4B ]
+ATOM    109 C313 DAPG    1      -0.627   2.970 -15.572  1.00  0.00      DAPG
+ATOM    110 H13X DAPG    1       0.358   3.428 -15.807  1.00  0.00      DAPG
+ATOM    111 H13Y DAPG    1      -0.733   2.915 -14.467  1.00  0.00      DAPG
+ATOM    112 C314 DAPG    1      -1.746   3.870 -16.128  1.00  0.00      DAPG
+ATOM    113 H14X DAPG    1      -2.599   4.152 -15.493  1.00  0.00      DAPG
+ATOM    114 C315 DAPG    1      -1.878   4.437 -17.337  1.00  0.00      DAPG
+ATOM    115 H15X DAPG    1      -2.806   4.976 -17.579  1.00  0.00      DAPG
+ATOM    116 C316 DAPG    1      -0.953   4.330 -18.526  1.00  0.00      DAPG
+ATOM    117 H16X DAPG    1       0.073   4.078 -18.183  1.00  0.00      DAPG
+ATOM    118 H16Y DAPG    1      -0.881   5.333 -18.998  1.00  0.00      DAPG
+[ C5B ]
+ATOM    119 C317 DAPG    1      -1.371   3.307 -19.655  1.00  0.00      DAPG
+ATOM    120 H17X DAPG    1      -2.333   3.576 -20.141  1.00  0.00      DAPG
+ATOM    121 H17Y DAPG    1      -1.549   2.371 -19.084  1.00  0.00      DAPG
+ATOM    122 C318 DAPG    1      -0.287   2.960 -20.758  1.00  0.00      DAPG
+ATOM    123 H18X DAPG    1       0.659   2.684 -20.246  1.00  0.00      DAPG
+ATOM    124 H18Y DAPG    1      -0.181   3.830 -21.441  1.00  0.00      DAPG
+ATOM    125 C319 DAPG    1      -0.715   1.742 -21.693  1.00  0.00      DAPG
+ATOM    126 H19X DAPG    1       0.212   1.408 -22.206  1.00  0.00      DAPG
+ATOM    127 H19Y DAPG    1      -1.470   2.135 -22.408  1.00  0.00      DAPG
+ATOM    128 C320 DAPG    1      -1.113   0.415 -21.067  1.00  0.00      DAPG
+ATOM    129 H20X DAPG    1      -0.404   0.161 -20.249  1.00  0.00      DAPG
+ATOM    130 H20Y DAPG    1      -1.074  -0.369 -21.853  1.00  0.00      DAPG
+ATOM    131 H20Z DAPG    1      -2.155   0.438 -20.684  1.00  0.00      DAPG
+END

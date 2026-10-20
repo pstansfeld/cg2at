@@ -1,0 +1,144 @@
+[ NH3 ]
+ATOM      1  N   DAPE    1      -0.680  -2.963  -0.928  1.00  0.00      DAPE
+ATOM      2  HN1 DAPE    1      -0.666  -3.644  -0.142  1.00  0.00      DAPE
+ATOM      3  HN2 DAPE    1      -1.452  -2.325  -0.647  1.00  0.00      DAPE
+ATOM      4  HN3 DAPE    1      -1.020  -3.441  -1.787  1.00  0.00      DAPE
+ATOM      5  C12 DAPE    1       0.632  -2.324  -1.142  1.00  0.00      DAPE
+ATOM      6 H12A DAPE    1       0.595  -1.610  -1.993  1.00  0.00      DAPE
+ATOM      7 H12B DAPE    1       1.346  -3.086  -1.522  1.00  0.00      DAPE
+ATOM      8  C11 DAPE    1       1.078  -1.599   0.154  1.00  0.00      DAPE
+ATOM      9 H11A DAPE    1       1.878  -1.058  -0.396  1.00  0.00      DAPE
+ATOM     10 H11B DAPE    1       1.494  -2.361   0.847  1.00  0.00      DAPE
+[ PO4 ]
+ATOM     11  P   DAPE    1       0.004   0.807   0.667  1.00  0.00      DAPE
+ATOM     12  O13 DAPE    1       1.421   1.273   0.694  1.00  0.00      DAPE
+ATOM     13  O14 DAPE    1      -0.888   1.402   1.688  1.00  0.00      DAPE
+ATOM     14  O12 DAPE    1       0.023  -0.761   0.699  1.00  0.00      DAPE
+ATOM     15  O11 DAPE    1      -0.733   0.974  -0.800  1.00  0.00      DAPE
+[ GL1 ]
+ATOM     16  C1  DAPE    1      -2.184   0.579  -0.775  1.00  0.00      DAPE
+ATOM     17  HA  DAPE    1      -2.795   1.333  -0.234  1.00  0.00      DAPE
+ATOM     18  HB  DAPE    1      -2.345  -0.366  -0.215  1.00  0.00      DAPE
+ATOM     19  C2  DAPE    1      -2.647   0.471  -2.249  1.00  0.00      DAPE
+ATOM     20  HS  DAPE    1      -2.474  -0.586  -2.543  1.00  0.00      DAPE
+ATOM     21  O21 DAPE    1      -1.975   1.359  -3.035  1.00  0.00      DAPE
+ATOM     22  C21 DAPE    1      -1.342   0.928  -4.241  1.00  0.00      DAPE
+ATOM     23  O22 DAPE    1      -1.383  -0.220  -4.603  1.00  0.00      DAPE
+[ GL2 ]
+ATOM     24  C3  DAPE    1      -4.152   0.776  -2.492  1.00  0.00      DAPE
+ATOM     25  HX  DAPE    1      -4.304   1.818  -2.137  1.00  0.00      DAPE
+ATOM     26  HY  DAPE    1      -4.845   0.102  -1.945  1.00  0.00      DAPE
+ATOM     27  O31 DAPE    1      -4.488   0.755  -3.938  1.00  0.00      DAPE
+ATOM     28  C31 DAPE    1      -4.735  -0.383  -4.488  1.00  0.00      DAPE
+ATOM     29  O32 DAPE    1      -4.566  -1.478  -3.961  1.00  0.00      DAPE
+[ C1A ]
+ATOM     30  C22 DAPE    1      -0.607   2.072  -4.988  1.00  0.00      DAPE
+ATOM     31  H2R DAPE    1      -1.184   3.014  -4.866  1.00  0.00      DAPE
+ATOM     32  H2S DAPE    1      -0.659   1.860  -6.077  1.00  0.00      DAPE
+ATOM     33  C23 DAPE    1       0.850   2.424  -4.537  1.00  0.00      DAPE
+ATOM     34  H3R DAPE    1       0.824   2.542  -3.433  1.00  0.00      DAPE
+ATOM     35  H3S DAPE    1       1.060   3.400  -5.026  1.00  0.00      DAPE
+ATOM     36  C24 DAPE    1       1.873   1.326  -4.873  1.00  0.00      DAPE
+ATOM     37  H4R DAPE    1       2.861   1.766  -4.734  1.00  0.00      DAPE
+ATOM     38  H4S DAPE    1       1.730   1.076  -5.924  1.00  0.00      DAPE
+[ D2A ]
+ATOM     39  C25 DAPE    1       1.869   0.030  -4.118  1.00  0.00      DAPE
+ATOM     40  H5R DAPE    1       2.012   0.080  -3.039  1.00  0.00      DAPE
+ATOM     41  C26 DAPE    1       1.704  -1.185  -4.660  1.00  0.00      DAPE
+ATOM     42  H6R DAPE    1       1.724  -2.040  -3.984  1.00  0.00      DAPE
+ATOM     43  C27 DAPE    1       1.494  -1.466  -6.118  1.00  0.00      DAPE
+ATOM     44  H7R DAPE    1       0.745  -0.777  -6.508  1.00  0.00      DAPE
+ATOM     45  H7S DAPE    1       1.142  -2.491  -6.235  1.00  0.00      DAPE
+ATOM     46  C28 DAPE    1       2.859  -1.283  -6.952  1.00  0.00      DAPE
+ATOM     47  H8R DAPE    1       3.807  -1.614  -6.503  1.00  0.00      DAPE
+[ D3A ]
+ATOM     48  C29 DAPE    1       2.893  -0.900  -8.211  1.00  0.00      DAPE
+ATOM     49  H9R DAPE    1       3.895  -1.129  -8.603  1.00  0.00      DAPE
+ATOM     50 C210 DAPE    1       1.836  -0.526  -9.232  1.00  0.00      DAPE
+ATOM     51 H10R DAPE    1       2.144   0.436  -9.696  1.00  0.00      DAPE
+ATOM     52 H10S DAPE    1       0.913  -0.110  -8.775  1.00  0.00      DAPE
+ATOM     53 C211 DAPE    1       1.641  -1.724 -10.115  1.00  0.00      DAPE
+ATOM     54 H11R DAPE    1       2.009  -2.692  -9.742  1.00  0.00      DAPE
+ATOM     55 C212 DAPE    1       1.218  -1.727 -11.365  1.00  0.00      DAPE
+ATOM     56 H12R DAPE    1       1.268  -2.710 -11.858  1.00  0.00      DAPE
+[ D4A ]
+ATOM     57 C213 DAPE    1       0.777  -0.471 -12.213  1.00  0.00      DAPE
+ATOM     58 H13R DAPE    1       1.397   0.418 -11.969  1.00  0.00      DAPE
+ATOM     59 H13S DAPE    1      -0.283  -0.237 -11.973  1.00  0.00      DAPE
+ATOM     60 C214 DAPE    1       0.652  -0.816 -13.638  1.00  0.00      DAPE
+ATOM     61 H14R DAPE    1       0.290  -1.785 -14.012  1.00  0.00      DAPE
+ATOM     62 C215 DAPE    1       1.017   0.012 -14.667  1.00  0.00      DAPE
+ATOM     63 H15R DAPE    1       0.918  -0.289 -15.721  1.00  0.00      DAPE
+ATOM     64 C216 DAPE    1       1.557   1.417 -14.667  1.00  0.00      DAPE
+ATOM     65 H16R DAPE    1       2.024   1.545 -15.667  1.00  0.00      DAPE
+ATOM     66 H16S DAPE    1       2.325   1.522 -13.871  1.00  0.00      DAPE
+[ C5A ]
+ATOM     67 C217 DAPE    1       0.418   2.461 -14.439  1.00  0.00      DAPE
+ATOM     68 H17R DAPE    1       0.226   2.359 -13.350  1.00  0.00      DAPE
+ATOM     69 H17S DAPE    1      -0.501   2.147 -14.979  1.00  0.00      DAPE
+ATOM     70 C218 DAPE    1       0.751   3.913 -14.783  1.00  0.00      DAPE
+ATOM     71 H18R DAPE    1       1.187   4.314 -13.843  1.00  0.00      DAPE
+ATOM     72 H18S DAPE    1      -0.201   4.462 -14.946  1.00  0.00      DAPE
+ATOM     73 C219 DAPE    1       1.680   4.166 -16.034  1.00  0.00      DAPE
+ATOM     74 H19R DAPE    1       2.510   3.447 -16.201  1.00  0.00      DAPE
+ATOM     75 H19S DAPE    1       2.096   5.114 -15.630  1.00  0.00      DAPE
+ATOM     76 C220 DAPE    1       0.999   4.359 -17.390  1.00  0.00      DAPE
+ATOM     77 H20R DAPE    1       0.594   3.368 -17.688  1.00  0.00      DAPE
+ATOM     78 H20S DAPE    1       1.697   4.741 -18.166  1.00  0.00      DAPE
+ATOM     79 H20T DAPE    1       0.080   4.982 -17.365  1.00  0.00      DAPE
+[ C1B ]
+ATOM     80  C32 DAPE    1      -5.201  -0.103  -5.948  1.00  0.00      DAPE
+ATOM     81  H2X DAPE    1      -5.557   0.950  -5.940  1.00  0.00      DAPE
+ATOM     82  H2Y DAPE    1      -5.920  -0.902  -6.228  1.00  0.00      DAPE
+ATOM     83  C33 DAPE    1      -4.083  -0.288  -6.936  1.00  0.00      DAPE
+ATOM     84  H3X DAPE    1      -3.291   0.491  -6.914  1.00  0.00      DAPE
+ATOM     85  H3Y DAPE    1      -4.651  -0.045  -7.860  1.00  0.00      DAPE
+ATOM     86  C34 DAPE    1      -3.460  -1.661  -7.194  1.00  0.00      DAPE
+ATOM     87  H4X DAPE    1      -4.240  -2.304  -7.601  1.00  0.00      DAPE
+ATOM     88  H4Y DAPE    1      -3.127  -2.056  -6.234  1.00  0.00      DAPE
+[ D2B ]
+ATOM     89  C35 DAPE    1      -2.293  -1.717  -8.134  1.00  0.00      DAPE
+ATOM     90  H5X DAPE    1      -1.307  -1.588  -7.687  1.00  0.00      DAPE
+ATOM     91  C36 DAPE    1      -2.320  -1.909  -9.460  1.00  0.00      DAPE
+ATOM     92  H6X DAPE    1      -1.355  -1.916  -9.966  1.00  0.00      DAPE
+ATOM     93  C37 DAPE    1      -3.526  -2.113 -10.329  1.00  0.00      DAPE
+ATOM     94  H7X DAPE    1      -3.369  -1.670 -11.313  1.00  0.00      DAPE
+ATOM     95  H7Y DAPE    1      -4.410  -1.672  -9.868  1.00  0.00      DAPE
+ATOM     96  C38 DAPE    1      -3.682  -3.675 -10.443  1.00  0.00      DAPE
+ATOM     97  H8X DAPE    1      -4.465  -4.197  -9.873  1.00  0.00      DAPE
+[ D3B ]
+ATOM     98  C39 DAPE    1      -2.778  -4.406 -11.148  1.00  0.00      DAPE
+ATOM     99  H9X DAPE    1      -2.870  -5.495 -11.265  1.00  0.00      DAPE
+ATOM    100 C310 DAPE    1      -1.595  -3.836 -11.923  1.00  0.00      DAPE
+ATOM    101 H10X DAPE    1      -0.716  -3.701 -11.257  1.00  0.00      DAPE
+ATOM    102 H10Y DAPE    1      -1.642  -2.775 -12.248  1.00  0.00      DAPE
+ATOM    103 C311 DAPE    1      -1.204  -4.713 -13.036  1.00  0.00      DAPE
+ATOM    104 H11X DAPE    1      -0.576  -5.561 -12.726  1.00  0.00      DAPE
+ATOM    105 C312 DAPE    1      -1.489  -4.491 -14.333  1.00  0.00      DAPE
+ATOM    106 H12X DAPE    1      -1.209  -5.247 -15.081  1.00  0.00      DAPE
+[ D4B ]
+ATOM    107 C313 DAPE    1      -2.265  -3.412 -14.998  1.00  0.00      DAPE
+ATOM    108 H13X DAPE    1      -1.493  -2.695 -15.350  1.00  0.00      DAPE
+ATOM    109 H13Y DAPE    1      -2.862  -2.868 -14.235  1.00  0.00      DAPE
+ATOM    110 C314 DAPE    1      -3.171  -3.815 -16.127  1.00  0.00      DAPE
+ATOM    111 H14X DAPE    1      -3.661  -4.797 -16.041  1.00  0.00      DAPE
+ATOM    112 C315 DAPE    1      -3.397  -2.995 -17.224  1.00  0.00      DAPE
+ATOM    113 H15X DAPE    1      -4.066  -3.398 -17.999  1.00  0.00      DAPE
+ATOM    114 C316 DAPE    1      -2.863  -1.654 -17.596  1.00  0.00      DAPE
+ATOM    115 H16X DAPE    1      -2.321  -1.225 -16.727  1.00  0.00      DAPE
+ATOM    116 H16Y DAPE    1      -3.677  -0.927 -17.805  1.00  0.00      DAPE
+[ C5B ]
+ATOM    117 C317 DAPE    1      -1.903  -1.786 -18.801  1.00  0.00      DAPE
+ATOM    118 H17X DAPE    1      -2.453  -2.252 -19.647  1.00  0.00      DAPE
+ATOM    119 H17Y DAPE    1      -1.051  -2.470 -18.596  1.00  0.00      DAPE
+ATOM    120 C318 DAPE    1      -1.295  -0.463 -19.140  1.00  0.00      DAPE
+ATOM    121 H18X DAPE    1      -0.877   0.010 -18.226  1.00  0.00      DAPE
+ATOM    122 H18Y DAPE    1      -2.153   0.153 -19.486  1.00  0.00      DAPE
+ATOM    123 C319 DAPE    1      -0.203  -0.441 -20.208  1.00  0.00      DAPE
+ATOM    124 H19X DAPE    1      -0.587  -0.641 -21.232  1.00  0.00      DAPE
+ATOM    125 H19Y DAPE    1       0.538  -1.260 -20.083  1.00  0.00      DAPE
+ATOM    126 C320 DAPE    1       0.575   0.976 -20.210  1.00  0.00      DAPE
+ATOM    127 H20X DAPE    1       0.021   1.695 -20.852  1.00  0.00      DAPE
+ATOM    128 H20Y DAPE    1       1.630   0.884 -20.546  1.00  0.00      DAPE
+ATOM    129 H20Z DAPE    1       0.650   1.481 -19.224  1.00  0.00      DAPE
+END

@@ -1,0 +1,135 @@
+[ PO4 ]
+ATOM      1  P   SAPA    1      -0.055  -0.064   0.308  1.00  0.00      SAPA
+ATOM      2  O13 SAPA    1      -1.096   0.770   0.977  1.00  0.00      SAPA
+ATOM      3  O14 SAPA    1      -0.028  -1.568   0.437  1.00  0.00      SAPA
+ATOM      4  O12 SAPA    1       1.393   0.378   0.876  1.00  0.00      SAPA
+ATOM      5  H12 SAPA    1       1.575   0.528   1.807  1.00  0.00      SAPA
+ATOM      6  O11 SAPA    1      -0.212   0.194  -1.199  1.00  0.00      SAPA
+[ GL1 ]
+ATOM      7  C1  SAPA    1      -0.418   1.350  -1.923  1.00  0.00      SAPA
+ATOM      8  HA  SAPA    1      -1.049   2.006  -1.286  1.00  0.00      SAPA
+ATOM      9  HB  SAPA    1       0.539   1.910  -1.993  1.00  0.00      SAPA
+ATOM     10  C2  SAPA    1      -0.993   1.180  -3.406  1.00  0.00      SAPA
+ATOM     11  HS  SAPA    1      -1.972   0.658  -3.348  1.00  0.00      SAPA
+ATOM     12  O21 SAPA    1      -0.011   0.386  -4.126  1.00  0.00      SAPA
+ATOM     13  C21 SAPA    1      -0.333  -0.872  -4.416  1.00  0.00      SAPA
+ATOM     14  O22 SAPA    1      -1.422  -1.350  -4.094  1.00  0.00      SAPA
+[ GL2 ]
+ATOM     15  C3  SAPA    1      -1.134   2.583  -4.063  1.00  0.00      SAPA
+ATOM     16  HX  SAPA    1      -0.114   3.016  -3.985  1.00  0.00      SAPA
+ATOM     17  HY  SAPA    1      -1.735   3.203  -3.364  1.00  0.00      SAPA
+ATOM     18  O31 SAPA    1      -1.671   2.595  -5.384  1.00  0.00      SAPA
+ATOM     19  C31 SAPA    1      -2.901   2.224  -5.488  1.00  0.00      SAPA
+ATOM     20  O32 SAPA    1      -3.682   2.056  -4.588  1.00  0.00      SAPA
+[ C1A ]
+ATOM     21  C22 SAPA    1       0.811  -1.562  -5.166  1.00  0.00      SAPA
+ATOM     22  H2R SAPA    1       1.702  -0.898  -5.179  1.00  0.00      SAPA
+ATOM     23  H2S SAPA    1       1.027  -2.468  -4.559  1.00  0.00      SAPA
+ATOM     24  C23 SAPA    1       0.436  -2.102  -6.590  1.00  0.00      SAPA
+ATOM     25  H3R SAPA    1      -0.435  -2.792  -6.581  1.00  0.00      SAPA
+ATOM     26  H3S SAPA    1       1.296  -2.695  -6.968  1.00  0.00      SAPA
+ATOM     27  C24 SAPA    1      -0.017  -1.023  -7.633  1.00  0.00      SAPA
+ATOM     28  H4R SAPA    1      -0.949  -0.555  -7.317  1.00  0.00      SAPA
+ATOM     29  H4S SAPA    1      -0.152  -1.476  -8.615  1.00  0.00      SAPA
+[ D2A ]
+ATOM     30  C25 SAPA    1       1.091  -0.013  -7.669  1.00  0.00      SAPA
+ATOM     31  H5R SAPA    1       1.400   0.404  -6.710  1.00  0.00      SAPA
+ATOM     32  C26 SAPA    1       1.742   0.433  -8.752  1.00  0.00      SAPA
+ATOM     33  H6R SAPA    1       2.523   1.173  -8.580  1.00  0.00      SAPA
+ATOM     34  C27 SAPA    1       1.510   0.022 -10.176  1.00  0.00      SAPA
+ATOM     35  H7R SAPA    1       1.382  -1.060 -10.214  1.00  0.00      SAPA
+ATOM     36  H7S SAPA    1       2.378   0.307 -10.770  1.00  0.00      SAPA
+ATOM     37  C28 SAPA    1       0.292   0.673 -10.757  1.00  0.00      SAPA
+ATOM     38  H8R SAPA    1      -0.589   0.565 -10.108  1.00  0.00      SAPA
+[ D3A ]
+ATOM     39  C29 SAPA    1       0.172   1.267 -11.951  1.00  0.00      SAPA
+ATOM     40  H9R SAPA    1      -0.814   1.480 -12.390  1.00  0.00      SAPA
+ATOM     41 C210 SAPA    1       1.239   1.448 -13.005  1.00  0.00      SAPA
+ATOM     42 H10R SAPA    1       2.207   1.389 -12.464  1.00  0.00      SAPA
+ATOM     43 H10S SAPA    1       1.251   2.506 -13.344  1.00  0.00      SAPA
+ATOM     44 C211 SAPA    1       1.249   0.491 -14.224  1.00  0.00      SAPA
+ATOM     45 H11R SAPA    1       0.242   0.499 -14.665  1.00  0.00      SAPA
+ATOM     46 C212 SAPA    1       2.204  -0.245 -14.770  1.00  0.00      SAPA
+ATOM     47 H12R SAPA    1       1.987  -0.864 -15.654  1.00  0.00      SAPA
+[ D4A ]
+ATOM     48 C213 SAPA    1       3.604  -0.252 -14.264  1.00  0.00      SAPA
+ATOM     49 H13R SAPA    1       3.816  -1.254 -13.833  1.00  0.00      SAPA
+ATOM     50 H13S SAPA    1       3.715   0.270 -13.289  1.00  0.00      SAPA
+ATOM     51 C214 SAPA    1       4.736   0.126 -15.159  1.00  0.00      SAPA
+ATOM     52 H14R SAPA    1       5.386  -0.707 -15.464  1.00  0.00      SAPA
+ATOM     53 C215 SAPA    1       4.958   1.314 -15.753  1.00  0.00      SAPA
+ATOM     54 H15R SAPA    1       5.863   1.411 -16.371  1.00  0.00      SAPA
+ATOM     55 C216 SAPA    1       4.147   2.581 -15.769  1.00  0.00      SAPA
+ATOM     56 H16R SAPA    1       4.848   3.378 -15.440  1.00  0.00      SAPA
+ATOM     57 H16S SAPA    1       3.323   2.508 -15.027  1.00  0.00      SAPA
+[ C5A ]
+ATOM     58 C217 SAPA    1       3.578   2.711 -17.154  1.00  0.00      SAPA
+ATOM     59 H17R SAPA    1       2.974   1.827 -17.452  1.00  0.00      SAPA
+ATOM     60 H17S SAPA    1       4.402   2.803 -17.893  1.00  0.00      SAPA
+ATOM     61 C218 SAPA    1       2.732   3.986 -17.234  1.00  0.00      SAPA
+ATOM     62 H18R SAPA    1       3.140   4.800 -16.597  1.00  0.00      SAPA
+ATOM     63 H18S SAPA    1       1.762   3.704 -16.772  1.00  0.00      SAPA
+ATOM     64 C219 SAPA    1       2.512   4.393 -18.725  1.00  0.00      SAPA
+ATOM     65 H19R SAPA    1       3.539   4.744 -18.961  1.00  0.00      SAPA
+ATOM     66 H19S SAPA    1       1.860   5.293 -18.742  1.00  0.00      SAPA
+ATOM     67 C220 SAPA    1       1.974   3.437 -19.761  1.00  0.00      SAPA
+ATOM     68 H20R SAPA    1       0.980   3.191 -19.330  1.00  0.00      SAPA
+ATOM     69 H20S SAPA    1       2.625   2.544 -19.873  1.00  0.00      SAPA
+ATOM     70 H20T SAPA    1       1.767   3.810 -20.786  1.00  0.00      SAPA
+[ C1B ]
+ATOM     71  C32 SAPA    1      -3.240   1.876  -6.920  1.00  0.00      SAPA
+ATOM     72  H2X SAPA    1      -3.059   0.782  -6.983  1.00  0.00      SAPA
+ATOM     73  H2Y SAPA    1      -2.453   2.353  -7.542  1.00  0.00      SAPA
+ATOM     74  C33 SAPA    1      -4.683   2.134  -7.274  1.00  0.00      SAPA
+ATOM     75  H3X SAPA    1      -4.964   3.205  -7.358  1.00  0.00      SAPA
+ATOM     76  H3Y SAPA    1      -5.334   1.589  -6.558  1.00  0.00      SAPA
+ATOM     77  C34 SAPA    1      -5.044   1.374  -8.506  1.00  0.00      SAPA
+ATOM     78  H4X SAPA    1      -6.143   1.491  -8.621  1.00  0.00      SAPA
+ATOM     79  H4Y SAPA    1      -5.002   0.289  -8.273  1.00  0.00      SAPA
+ATOM     80  C35 SAPA    1      -4.404   1.916  -9.771  1.00  0.00      SAPA
+ATOM     81  H5X SAPA    1      -3.299   1.876  -9.665  1.00  0.00      SAPA
+ATOM     82  H5Y SAPA    1      -4.848   2.922  -9.925  1.00  0.00      SAPA
+ATOM     83  C36 SAPA    1      -4.758   1.033 -10.988  1.00  0.00      SAPA
+ATOM     84  H6X SAPA    1      -5.833   1.125 -11.252  1.00  0.00      SAPA
+ATOM     85  H6Y SAPA    1      -4.645  -0.054 -10.788  1.00  0.00      SAPA
+[ C2B ]
+ATOM     86  C37 SAPA    1      -3.744   1.356 -12.133  1.00  0.00      SAPA
+ATOM     87  H7X SAPA    1      -2.833   0.898 -11.692  1.00  0.00      SAPA
+ATOM     88  H7Y SAPA    1      -3.561   2.452 -12.115  1.00  0.00      SAPA
+ATOM     89  C38 SAPA    1      -4.196   0.773 -13.499  1.00  0.00      SAPA
+ATOM     90  H8X SAPA    1      -4.969   1.489 -13.852  1.00  0.00      SAPA
+ATOM     91  H8Y SAPA    1      -4.754  -0.183 -13.404  1.00  0.00      SAPA
+ATOM     92  C39 SAPA    1      -2.999   0.613 -14.511  1.00  0.00      SAPA
+ATOM     93  H9X SAPA    1      -2.625  -0.433 -14.501  1.00  0.00      SAPA
+ATOM     94  H9Y SAPA    1      -2.156   1.307 -14.304  1.00  0.00      SAPA
+ATOM     95 C310 SAPA    1      -3.449   0.770 -16.016  1.00  0.00      SAPA
+ATOM     96 H10X SAPA    1      -3.823   1.799 -16.204  1.00  0.00      SAPA
+ATOM     97 H10Y SAPA    1      -4.243   0.004 -16.146  1.00  0.00      SAPA
+[ C3B ]
+ATOM     98 C311 SAPA    1      -2.292   0.592 -16.998  1.00  0.00      SAPA
+ATOM     99 H11X SAPA    1      -1.953  -0.462 -16.896  1.00  0.00      SAPA
+ATOM    100 H11Y SAPA    1      -1.492   1.334 -16.792  1.00  0.00      SAPA
+ATOM    101 C312 SAPA    1      -2.789   0.637 -18.481  1.00  0.00      SAPA
+ATOM    102 H12X SAPA    1      -3.322   1.577 -18.738  1.00  0.00      SAPA
+ATOM    103 H12Y SAPA    1      -3.506  -0.202 -18.610  1.00  0.00      SAPA
+ATOM    104 C313 SAPA    1      -1.572   0.292 -19.456  1.00  0.00      SAPA
+ATOM    105 H13X SAPA    1      -1.268  -0.718 -19.106  1.00  0.00      SAPA
+ATOM    106 H13Y SAPA    1      -0.749   1.006 -19.237  1.00  0.00      SAPA
+ATOM    107 C314 SAPA    1      -1.846   0.340 -20.948  1.00  0.00      SAPA
+ATOM    108 H14X SAPA    1      -2.198   1.373 -21.158  1.00  0.00      SAPA
+ATOM    109 H14Y SAPA    1      -2.662  -0.277 -21.381  1.00  0.00      SAPA
+[ C4B ]
+ATOM    110 C315 SAPA    1      -0.481   0.130 -21.597  1.00  0.00      SAPA
+ATOM    111 H15X SAPA    1       0.248   0.879 -21.220  1.00  0.00      SAPA
+ATOM    112 H15Y SAPA    1      -0.696   0.118 -22.687  1.00  0.00      SAPA
+ATOM    113 C316 SAPA    1       0.110  -1.293 -21.318  1.00  0.00      SAPA
+ATOM    114 H16X SAPA    1       0.355  -1.760 -22.296  1.00  0.00      SAPA
+ATOM    115 H16Y SAPA    1      -0.679  -1.863 -20.783  1.00  0.00      SAPA
+ATOM    116 C317 SAPA    1       1.488  -1.235 -20.531  1.00  0.00      SAPA
+ATOM    117 H17X SAPA    1       1.636  -2.335 -20.478  1.00  0.00      SAPA
+ATOM    118 H17Y SAPA    1       1.375  -0.992 -19.453  1.00  0.00      SAPA
+ATOM    119 C318 SAPA    1       2.673  -0.602 -21.242  1.00  0.00      SAPA
+ATOM    120 H18X SAPA    1       3.132  -1.060 -22.144  1.00  0.00      SAPA
+ATOM    121 H18Y SAPA    1       3.502  -0.675 -20.506  1.00  0.00      SAPA
+ATOM    122 H18Z SAPA    1       2.566   0.485 -21.445  1.00  0.00      SAPA
+END

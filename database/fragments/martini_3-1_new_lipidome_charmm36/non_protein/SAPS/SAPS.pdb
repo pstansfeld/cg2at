@@ -1,0 +1,147 @@
+[ CNO ]
+ATOM      1  N   SAPS    1      -0.442   2.263   0.867  1.00  0.00      SAPS
+ATOM      2  HN1 SAPS    1      -0.544   2.940   1.650  1.00  0.00      SAPS
+ATOM      3  HN2 SAPS    1       0.550   2.282   0.556  1.00  0.00      SAPS
+ATOM      4  HN3 SAPS    1      -0.995   2.500   0.019  1.00  0.00      SAPS
+ATOM      5  C12 SAPS    1      -0.707   0.890   1.328  1.00  0.00      SAPS
+ATOM      6 H12A SAPS    1      -0.165   0.641   2.228  1.00  0.00      SAPS
+ATOM      7  C13 SAPS    1      -2.175   0.683   1.545  1.00  0.00      SAPS
+ATOM      8 O13A SAPS    1      -3.040   1.589   1.333  1.00  0.00      SAPS
+ATOM      9 O13B SAPS    1      -2.523  -0.448   2.081  1.00  0.00      SAPS
+ATOM     10  C11 SAPS    1      -0.048  -0.176   0.441  1.00  0.00      SAPS
+ATOM     11 H11A SAPS    1      -0.643  -0.204  -0.497  1.00  0.00      SAPS
+ATOM     12 H11B SAPS    1      -0.073  -1.165   0.947  1.00  0.00      SAPS
+[ PO4 ]
+ATOM     13  P   SAPS    1       2.116  -0.617  -0.938  1.00  0.00      SAPS
+ATOM     14  O13 SAPS    1       3.462   0.012  -1.188  1.00  0.00      SAPS
+ATOM     15  O14 SAPS    1       1.989  -2.060  -0.908  1.00  0.00      SAPS
+ATOM     16  O12 SAPS    1       1.291   0.136   0.202  1.00  0.00      SAPS
+ATOM     17  O11 SAPS    1       1.201  -0.179  -2.164  1.00  0.00      SAPS
+[ GL1 ]
+ATOM     18  C1  SAPS    1       1.371   1.059  -2.787  1.00  0.00      SAPS
+ATOM     19  HA  SAPS    1       0.966   1.886  -2.165  1.00  0.00      SAPS
+ATOM     20  HB  SAPS    1       2.415   1.349  -3.031  1.00  0.00      SAPS
+ATOM     21  C2  SAPS    1       0.532   1.071  -4.089  1.00  0.00      SAPS
+ATOM     22  HS  SAPS    1      -0.428   0.789  -3.607  1.00  0.00      SAPS
+ATOM     23  O21 SAPS    1       1.080   0.110  -5.003  1.00  0.00      SAPS
+ATOM     24  C21 SAPS    1       0.244  -0.389  -5.766  1.00  0.00      SAPS
+ATOM     25  O22 SAPS    1      -0.986  -0.266  -5.812  1.00  0.00      SAPS
+[ GL2 ]
+ATOM     26  C3  SAPS    1       0.488   2.472  -4.642  1.00  0.00      SAPS
+ATOM     27  HX  SAPS    1       1.521   2.576  -5.038  1.00  0.00      SAPS
+ATOM     28  HY  SAPS    1       0.169   3.294  -3.965  1.00  0.00      SAPS
+ATOM     29  O31 SAPS    1      -0.459   2.531  -5.649  1.00  0.00      SAPS
+ATOM     30  C31 SAPS    1      -0.199   3.312  -6.729  1.00  0.00      SAPS
+ATOM     31  O32 SAPS    1       0.797   3.978  -6.914  1.00  0.00      SAPS
+[ C1A ]
+ATOM     32  C22 SAPS    1       0.923  -1.281  -6.819  1.00  0.00      SAPS
+ATOM     33  H2R SAPS    1       1.968  -0.958  -7.013  1.00  0.00      SAPS
+ATOM     34  H2S SAPS    1       0.976  -2.225  -6.235  1.00  0.00      SAPS
+ATOM     35  C23 SAPS    1       0.089  -1.308  -8.130  1.00  0.00      SAPS
+ATOM     36  H3R SAPS    1      -0.975  -1.520  -7.891  1.00  0.00      SAPS
+ATOM     37  H3S SAPS    1       0.362  -2.206  -8.725  1.00  0.00      SAPS
+ATOM     38  C24 SAPS    1       0.179   0.030  -8.919  1.00  0.00      SAPS
+ATOM     39  H4R SAPS    1       1.234   0.146  -9.168  1.00  0.00      SAPS
+ATOM     40  H4S SAPS    1      -0.114   0.803  -8.209  1.00  0.00      SAPS
+[ D2A ]
+ATOM     41  C25 SAPS    1      -0.564   0.350 -10.182  1.00  0.00      SAPS
+ATOM     42  H5R SAPS    1      -1.444   0.986 -10.081  1.00  0.00      SAPS
+ATOM     43  C26 SAPS    1      -0.262  -0.061 -11.421  1.00  0.00      SAPS
+ATOM     44  H6R SAPS    1      -0.923   0.275 -12.220  1.00  0.00      SAPS
+ATOM     45  C27 SAPS    1       0.887  -0.936 -11.826  1.00  0.00      SAPS
+ATOM     46  H7R SAPS    1       1.553  -1.101 -10.979  1.00  0.00      SAPS
+ATOM     47  H7S SAPS    1       1.444  -0.475 -12.642  1.00  0.00      SAPS
+ATOM     48  C28 SAPS    1       0.289  -2.227 -12.273  1.00  0.00      SAPS
+ATOM     49  H8R SAPS    1      -0.272  -2.703 -11.455  1.00  0.00      SAPS
+[ D3A ]
+ATOM     50  C29 SAPS    1       0.311  -2.781 -13.483  1.00  0.00      SAPS
+ATOM     51  H9R SAPS    1      -0.110  -3.797 -13.476  1.00  0.00      SAPS
+ATOM     52 C210 SAPS    1       1.030  -2.265 -14.644  1.00  0.00      SAPS
+ATOM     53 H10R SAPS    1       1.879  -1.671 -14.244  1.00  0.00      SAPS
+ATOM     54 H10S SAPS    1       0.358  -1.634 -15.264  1.00  0.00      SAPS
+ATOM     55 C211 SAPS    1       1.665  -3.267 -15.616  1.00  0.00      SAPS
+ATOM     56 H11R SAPS    1       2.726  -3.499 -15.445  1.00  0.00      SAPS
+ATOM     57 C212 SAPS    1       0.995  -3.887 -16.623  1.00  0.00      SAPS
+ATOM     58 H12R SAPS    1       1.483  -4.534 -17.367  1.00  0.00      SAPS
+[ D4A ]
+ATOM     59 C213 SAPS    1      -0.483  -3.653 -17.008  1.00  0.00      SAPS
+ATOM     60 H13R SAPS    1      -0.638  -2.770 -17.664  1.00  0.00      SAPS
+ATOM     61 H13S SAPS    1      -1.100  -3.329 -16.143  1.00  0.00      SAPS
+ATOM     62 C214 SAPS    1      -1.105  -4.949 -17.611  1.00  0.00      SAPS
+ATOM     63 H14R SAPS    1      -1.349  -5.768 -16.918  1.00  0.00      SAPS
+ATOM     64 C215 SAPS    1      -1.485  -5.103 -18.851  1.00  0.00      SAPS
+ATOM     65 H15R SAPS    1      -1.719  -6.171 -18.965  1.00  0.00      SAPS
+ATOM     66 C216 SAPS    1      -1.351  -4.086 -20.014  1.00  0.00      SAPS
+ATOM     67 H16R SAPS    1      -0.848  -4.549 -20.890  1.00  0.00      SAPS
+ATOM     68 H16S SAPS    1      -0.728  -3.232 -19.672  1.00  0.00      SAPS
+[ C5A ]
+ATOM     69 C217 SAPS    1      -2.728  -3.556 -20.584  1.00  0.00      SAPS
+ATOM     70 H17R SAPS    1      -3.317  -2.961 -19.854  1.00  0.00      SAPS
+ATOM     71 H17S SAPS    1      -3.286  -4.420 -21.005  1.00  0.00      SAPS
+ATOM     72 C218 SAPS    1      -2.476  -2.639 -21.837  1.00  0.00      SAPS
+ATOM     73 H18R SAPS    1      -3.310  -2.651 -22.572  1.00  0.00      SAPS
+ATOM     74 H18S SAPS    1      -1.766  -3.235 -22.449  1.00  0.00      SAPS
+ATOM     75 C219 SAPS    1      -2.060  -1.177 -21.435  1.00  0.00      SAPS
+ATOM     76 H19R SAPS    1      -1.463  -1.210 -20.498  1.00  0.00      SAPS
+ATOM     77 H19S SAPS    1      -3.047  -0.781 -21.114  1.00  0.00      SAPS
+ATOM     78 C220 SAPS    1      -1.348  -0.311 -22.446  1.00  0.00      SAPS
+ATOM     79 H20R SAPS    1      -0.262  -0.362 -22.216  1.00  0.00      SAPS
+ATOM     80 H20S SAPS    1      -1.679   0.744 -22.343  1.00  0.00      SAPS
+ATOM     81 H20T SAPS    1      -1.509  -0.579 -23.512  1.00  0.00      SAPS
+[ C1B ]
+ATOM     82  C32 SAPS    1      -1.464   3.402  -7.660  1.00  0.00      SAPS
+ATOM     83  H2X SAPS    1      -2.217   4.141  -7.310  1.00  0.00      SAPS
+ATOM     84  H2Y SAPS    1      -1.910   2.389  -7.557  1.00  0.00      SAPS
+ATOM     85  C33 SAPS    1      -0.938   3.725  -9.070  1.00  0.00      SAPS
+ATOM     86  H3X SAPS    1      -0.323   2.834  -9.320  1.00  0.00      SAPS
+ATOM     87  H3Y SAPS    1      -0.208   4.563  -9.065  1.00  0.00      SAPS
+ATOM     88  C34 SAPS    1      -1.886   4.098 -10.165  1.00  0.00      SAPS
+ATOM     89  H4X SAPS    1      -2.483   4.959  -9.797  1.00  0.00      SAPS
+ATOM     90  H4Y SAPS    1      -2.650   3.297 -10.261  1.00  0.00      SAPS
+ATOM     91  C35 SAPS    1      -1.208   4.390 -11.444  1.00  0.00      SAPS
+ATOM     92  H5X SAPS    1      -0.352   3.682 -11.445  1.00  0.00      SAPS
+ATOM     93  H5Y SAPS    1      -0.848   5.422 -11.246  1.00  0.00      SAPS
+ATOM     94  C36 SAPS    1      -2.045   4.309 -12.729  1.00  0.00      SAPS
+ATOM     95  H6X SAPS    1      -2.614   5.259 -12.823  1.00  0.00      SAPS
+ATOM     96  H6Y SAPS    1      -2.800   3.498 -12.657  1.00  0.00      SAPS
+[ C2B ]
+ATOM     97  C37 SAPS    1      -1.215   4.072 -13.959  1.00  0.00      SAPS
+ATOM     98  H7X SAPS    1      -0.480   4.890 -14.114  1.00  0.00      SAPS
+ATOM     99  H7Y SAPS    1      -1.817   3.991 -14.890  1.00  0.00      SAPS
+ATOM    100  C38 SAPS    1      -0.382   2.717 -13.998  1.00  0.00      SAPS
+ATOM    101  H8X SAPS    1      -1.078   1.859 -14.120  1.00  0.00      SAPS
+ATOM    102  H8Y SAPS    1       0.258   2.626 -13.095  1.00  0.00      SAPS
+ATOM    103  C39 SAPS    1       0.512   2.570 -15.241  1.00  0.00      SAPS
+ATOM    104  H9X SAPS    1       1.386   3.245 -15.119  1.00  0.00      SAPS
+ATOM    105  H9Y SAPS    1      -0.057   2.998 -16.093  1.00  0.00      SAPS
+ATOM    106 C310 SAPS    1       0.969   1.186 -15.602  1.00  0.00      SAPS
+ATOM    107 H10X SAPS    1       0.199   0.391 -15.499  1.00  0.00      SAPS
+ATOM    108 H10Y SAPS    1       1.779   0.898 -14.898  1.00  0.00      SAPS
+[ C3B ]
+ATOM    109 C311 SAPS    1       1.487   1.172 -17.063  1.00  0.00      SAPS
+ATOM    110 H11X SAPS    1       0.620   1.536 -17.655  1.00  0.00      SAPS
+ATOM    111 H11Y SAPS    1       1.749   0.142 -17.387  1.00  0.00      SAPS
+ATOM    112 C312 SAPS    1       2.626   2.116 -17.397  1.00  0.00      SAPS
+ATOM    113 H12X SAPS    1       3.563   1.703 -16.966  1.00  0.00      SAPS
+ATOM    114 H12Y SAPS    1       2.496   3.137 -16.979  1.00  0.00      SAPS
+ATOM    115 C313 SAPS    1       2.816   2.256 -18.985  1.00  0.00      SAPS
+ATOM    116 H13X SAPS    1       3.685   2.919 -19.182  1.00  0.00      SAPS
+ATOM    117 H13Y SAPS    1       1.958   2.893 -19.290  1.00  0.00      SAPS
+ATOM    118 C314 SAPS    1       2.779   0.894 -19.657  1.00  0.00      SAPS
+ATOM    119 H14X SAPS    1       2.734   1.012 -20.761  1.00  0.00      SAPS
+ATOM    120 H14Y SAPS    1       1.873   0.288 -19.444  1.00  0.00      SAPS
+[ C4B ]
+ATOM    121 C315 SAPS    1       3.988  -0.025 -19.510  1.00  0.00      SAPS
+ATOM    122 H15X SAPS    1       4.343  -0.054 -18.458  1.00  0.00      SAPS
+ATOM    123 H15Y SAPS    1       4.820   0.396 -20.114  1.00  0.00      SAPS
+ATOM    124 C316 SAPS    1       3.750  -1.452 -19.893  1.00  0.00      SAPS
+ATOM    125 H16X SAPS    1       3.089  -1.906 -19.124  1.00  0.00      SAPS
+ATOM    126 H16Y SAPS    1       4.731  -1.967 -19.816  1.00  0.00      SAPS
+ATOM    127 C317 SAPS    1       3.235  -1.668 -21.328  1.00  0.00      SAPS
+ATOM    128 H17X SAPS    1       3.769  -1.014 -22.050  1.00  0.00      SAPS
+ATOM    129 H17Y SAPS    1       2.161  -1.385 -21.317  1.00  0.00      SAPS
+ATOM    130 C318 SAPS    1       3.202  -3.142 -21.735  1.00  0.00      SAPS
+ATOM    131 H18X SAPS    1       2.706  -3.399 -22.696  1.00  0.00      SAPS
+ATOM    132 H18Y SAPS    1       2.845  -3.696 -20.841  1.00  0.00      SAPS
+ATOM    133 H18Z SAPS    1       4.277  -3.391 -21.864  1.00  0.00      SAPS
+END

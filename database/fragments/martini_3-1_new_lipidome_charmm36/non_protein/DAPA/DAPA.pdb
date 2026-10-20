@@ -1,0 +1,134 @@
+[ PO4 ]
+ATOM      1  P   DAPA    1       0.135   0.023   0.220  1.00  0.00      DAPA
+ATOM      2  O13 DAPA    1       0.577   0.764   1.390  1.00  0.00      DAPA
+ATOM      3  O14 DAPA    1      -0.573  -1.205   0.429  1.00  0.00      DAPA
+ATOM      4  O12 DAPA    1       1.405  -0.399  -0.551  1.00  0.00      DAPA
+ATOM      5  H12 DAPA    1       1.281  -0.848  -1.391  1.00  0.00      DAPA
+ATOM      6  O11 DAPA    1      -0.608   0.992  -0.840  1.00  0.00      DAPA
+[ GL1 ]
+ATOM      7  C1  DAPA    1      -1.467   0.429  -1.810  1.00  0.00      DAPA
+ATOM      8  HA  DAPA    1      -1.830  -0.584  -1.533  1.00  0.00      DAPA
+ATOM      9  HB  DAPA    1      -0.834   0.365  -2.720  1.00  0.00      DAPA
+ATOM     10  C2  DAPA    1      -2.657   1.383  -2.092  1.00  0.00      DAPA
+ATOM     11  HS  DAPA    1      -3.062   0.985  -3.047  1.00  0.00      DAPA
+ATOM     12  O21 DAPA    1      -2.134   2.744  -2.345  1.00  0.00      DAPA
+ATOM     13  C21 DAPA    1      -1.722   2.899  -3.583  1.00  0.00      DAPA
+ATOM     14  O22 DAPA    1      -1.588   1.983  -4.423  1.00  0.00      DAPA
+[ GL2 ]
+ATOM     15  C3  DAPA    1      -3.640   1.454  -0.891  1.00  0.00      DAPA
+ATOM     16  HX  DAPA    1      -4.404   2.171  -1.260  1.00  0.00      DAPA
+ATOM     17  HY  DAPA    1      -3.220   2.067  -0.066  1.00  0.00      DAPA
+ATOM     18  O31 DAPA    1      -4.282   0.148  -0.612  1.00  0.00      DAPA
+ATOM     19  C31 DAPA    1      -4.034  -0.416   0.519  1.00  0.00      DAPA
+ATOM     20  O32 DAPA    1      -3.369   0.066   1.424  1.00  0.00      DAPA
+[ C1A ]
+ATOM     21  C22 DAPA    1      -1.333   4.407  -3.794  1.00  0.00      DAPA
+ATOM     22  H2R DAPA    1      -0.416   4.724  -3.254  1.00  0.00      DAPA
+ATOM     23  H2S DAPA    1      -2.222   4.885  -3.329  1.00  0.00      DAPA
+ATOM     24  C23 DAPA    1      -1.168   4.904  -5.233  1.00  0.00      DAPA
+ATOM     25  H3R DAPA    1      -1.436   5.981  -5.192  1.00  0.00      DAPA
+ATOM     26  H3S DAPA    1      -1.872   4.427  -5.947  1.00  0.00      DAPA
+ATOM     27  C24 DAPA    1       0.307   4.858  -5.792  1.00  0.00      DAPA
+ATOM     28  H4R DAPA    1       0.981   5.269  -5.041  1.00  0.00      DAPA
+ATOM     29  H4S DAPA    1       0.360   5.463  -6.697  1.00  0.00      DAPA
+[ D2A ]
+ATOM     30  C25 DAPA    1       0.739   3.459  -6.118  1.00  0.00      DAPA
+ATOM     31  H5R DAPA    1       1.466   3.031  -5.428  1.00  0.00      DAPA
+ATOM     32  C26 DAPA    1       0.373   2.651  -7.123  1.00  0.00      DAPA
+ATOM     33  H6R DAPA    1       0.851   1.671  -7.119  1.00  0.00      DAPA
+ATOM     34  C27 DAPA    1      -0.588   2.880  -8.251  1.00  0.00      DAPA
+ATOM     35  H7R DAPA    1      -1.524   3.266  -7.848  1.00  0.00      DAPA
+ATOM     36  H7S DAPA    1      -0.773   1.933  -8.758  1.00  0.00      DAPA
+ATOM     37  C28 DAPA    1      -0.036   3.867  -9.241  1.00  0.00      DAPA
+ATOM     38  H8R DAPA    1       0.070   4.931  -8.981  1.00  0.00      DAPA
+[ D3A ]
+ATOM     39  C29 DAPA    1       0.263   3.584 -10.522  1.00  0.00      DAPA
+ATOM     40  H9R DAPA    1       0.710   4.350 -11.172  1.00  0.00      DAPA
+ATOM     41 C210 DAPA    1       0.212   2.283 -11.317  1.00  0.00      DAPA
+ATOM     42 H10R DAPA    1      -0.151   2.531 -12.337  1.00  0.00      DAPA
+ATOM     43 H10S DAPA    1      -0.605   1.672 -10.878  1.00  0.00      DAPA
+ATOM     44 C211 DAPA    1       1.513   1.548 -11.216  1.00  0.00      DAPA
+ATOM     45 H11R DAPA    1       1.591   0.879 -10.346  1.00  0.00      DAPA
+ATOM     46 C212 DAPA    1       2.615   1.687 -12.038  1.00  0.00      DAPA
+ATOM     47 H12R DAPA    1       3.478   1.029 -11.859  1.00  0.00      DAPA
+[ D4A ]
+ATOM     48 C213 DAPA    1       2.755   2.581 -13.273  1.00  0.00      DAPA
+ATOM     49 H13R DAPA    1       3.857   2.708 -13.330  1.00  0.00      DAPA
+ATOM     50 H13S DAPA    1       2.393   3.630 -13.217  1.00  0.00      DAPA
+ATOM     51 C214 DAPA    1       2.239   1.812 -14.493  1.00  0.00      DAPA
+ATOM     52 H14R DAPA    1       2.334   0.737 -14.283  1.00  0.00      DAPA
+ATOM     53 C215 DAPA    1       1.614   2.342 -15.550  1.00  0.00      DAPA
+ATOM     54 H15R DAPA    1       1.277   1.714 -16.388  1.00  0.00      DAPA
+ATOM     55 C216 DAPA    1       1.346   3.858 -15.725  1.00  0.00      DAPA
+ATOM     56 H16R DAPA    1       1.829   4.109 -16.694  1.00  0.00      DAPA
+ATOM     57 H16S DAPA    1       1.992   4.435 -15.029  1.00  0.00      DAPA
+[ C5A ]
+ATOM     58 C217 DAPA    1      -0.164   4.342 -15.792  1.00  0.00      DAPA
+ATOM     59 H17R DAPA    1      -0.184   5.439 -15.963  1.00  0.00      DAPA
+ATOM     60 H17S DAPA    1      -0.381   4.193 -14.713  1.00  0.00      DAPA
+ATOM     61 C218 DAPA    1      -1.108   3.442 -16.624  1.00  0.00      DAPA
+ATOM     62 H18R DAPA    1      -2.146   3.823 -16.513  1.00  0.00      DAPA
+ATOM     63 H18S DAPA    1      -1.157   2.422 -16.185  1.00  0.00      DAPA
+ATOM     64 C219 DAPA    1      -0.814   3.359 -18.124  1.00  0.00      DAPA
+ATOM     65 H19R DAPA    1      -1.751   2.990 -18.593  1.00  0.00      DAPA
+ATOM     66 H19S DAPA    1      -0.133   2.483 -18.192  1.00  0.00      DAPA
+ATOM     67 C220 DAPA    1      -0.378   4.512 -18.965  1.00  0.00      DAPA
+ATOM     68 H20R DAPA    1      -0.949   5.462 -18.883  1.00  0.00      DAPA
+ATOM     69 H20S DAPA    1      -0.473   4.242 -20.039  1.00  0.00      DAPA
+ATOM     70 H20T DAPA    1       0.697   4.751 -18.814  1.00  0.00      DAPA
+[ C1B ]
+ATOM     71  C32 DAPA    1      -4.724  -1.758   0.742  1.00  0.00      DAPA
+ATOM     72  H2X DAPA    1      -5.530  -1.863  -0.015  1.00  0.00      DAPA
+ATOM     73  H2Y DAPA    1      -5.069  -1.631   1.790  1.00  0.00      DAPA
+ATOM     74  C33 DAPA    1      -3.700  -2.875   0.580  1.00  0.00      DAPA
+ATOM     75  H3X DAPA    1      -4.058  -3.767   1.138  1.00  0.00      DAPA
+ATOM     76  H3Y DAPA    1      -2.677  -2.595   0.909  1.00  0.00      DAPA
+ATOM     77  C34 DAPA    1      -3.528  -3.393  -0.815  1.00  0.00      DAPA
+ATOM     78  H4X DAPA    1      -3.088  -2.593  -1.410  1.00  0.00      DAPA
+ATOM     79  H4Y DAPA    1      -4.519  -3.631  -1.201  1.00  0.00      DAPA
+[ D2B ]
+ATOM     80  C35 DAPA    1      -2.671  -4.611  -0.991  1.00  0.00      DAPA
+ATOM     81  H5X DAPA    1      -3.037  -5.524  -0.520  1.00  0.00      DAPA
+ATOM     82  C36 DAPA    1      -1.511  -4.719  -1.654  1.00  0.00      DAPA
+ATOM     83  H6X DAPA    1      -1.053  -5.707  -1.655  1.00  0.00      DAPA
+ATOM     84  C37 DAPA    1      -0.765  -3.649  -2.395  1.00  0.00      DAPA
+ATOM     85  H7X DAPA    1      -0.981  -2.686  -1.932  1.00  0.00      DAPA
+ATOM     86  H7Y DAPA    1      -1.105  -3.639  -3.431  1.00  0.00      DAPA
+ATOM     87  C38 DAPA    1       0.695  -3.867  -2.377  1.00  0.00      DAPA
+ATOM     88  H8X DAPA    1       1.193  -3.930  -1.398  1.00  0.00      DAPA
+[ D3B ]
+ATOM     89  C39 DAPA    1       1.594  -3.833  -3.341  1.00  0.00      DAPA
+ATOM     90  H9X DAPA    1       2.659  -3.956  -3.097  1.00  0.00      DAPA
+ATOM     91 C310 DAPA    1       1.234  -3.581  -4.760  1.00  0.00      DAPA
+ATOM     92 H10X DAPA    1       0.429  -4.282  -5.071  1.00  0.00      DAPA
+ATOM     93 H10Y DAPA    1       2.062  -3.856  -5.447  1.00  0.00      DAPA
+ATOM     94 C311 DAPA    1       0.796  -2.133  -5.085  1.00  0.00      DAPA
+ATOM     95 H11X DAPA    1       0.650  -1.511  -4.189  1.00  0.00      DAPA
+ATOM     96 C312 DAPA    1       0.567  -1.694  -6.326  1.00  0.00      DAPA
+ATOM     97 H12X DAPA    1       0.132  -0.701  -6.513  1.00  0.00      DAPA
+[ D4B ]
+ATOM     98 C313 DAPA    1       0.601  -2.388  -7.674  1.00  0.00      DAPA
+ATOM     99 H13X DAPA    1      -0.392  -2.193  -8.132  1.00  0.00      DAPA
+ATOM    100 H13Y DAPA    1       0.913  -3.451  -7.589  1.00  0.00      DAPA
+ATOM    101 C314 DAPA    1       1.654  -1.823  -8.705  1.00  0.00      DAPA
+ATOM    102 H14X DAPA    1       2.206  -0.960  -8.305  1.00  0.00      DAPA
+ATOM    103 C315 DAPA    1       1.946  -2.225  -9.996  1.00  0.00      DAPA
+ATOM    104 H15X DAPA    1       2.882  -1.896 -10.472  1.00  0.00      DAPA
+ATOM    105 C316 DAPA    1       1.241  -3.423 -10.625  1.00  0.00      DAPA
+ATOM    106 H16X DAPA    1       0.334  -3.648 -10.024  1.00  0.00      DAPA
+ATOM    107 H16Y DAPA    1       1.811  -4.374 -10.548  1.00  0.00      DAPA
+[ C5B ]
+ATOM    108 C317 DAPA    1       0.980  -3.267 -12.089  1.00  0.00      DAPA
+ATOM    109 H17X DAPA    1       0.224  -2.471 -12.261  1.00  0.00      DAPA
+ATOM    110 H17Y DAPA    1       0.451  -4.175 -12.449  1.00  0.00      DAPA
+ATOM    111 C318 DAPA    1       2.190  -3.021 -12.976  1.00  0.00      DAPA
+ATOM    112 H18X DAPA    1       3.000  -3.749 -12.758  1.00  0.00      DAPA
+ATOM    113 H18Y DAPA    1       2.472  -1.978 -12.717  1.00  0.00      DAPA
+ATOM    114 C319 DAPA    1       1.747  -2.876 -14.466  1.00  0.00      DAPA
+ATOM    115 H19X DAPA    1       0.905  -2.155 -14.392  1.00  0.00      DAPA
+ATOM    116 H19Y DAPA    1       1.511  -3.861 -14.922  1.00  0.00      DAPA
+ATOM    117 C320 DAPA    1       2.893  -2.252 -15.307  1.00  0.00      DAPA
+ATOM    118 H20X DAPA    1       3.821  -2.854 -15.208  1.00  0.00      DAPA
+ATOM    119 H20Y DAPA    1       3.039  -1.223 -14.913  1.00  0.00      DAPA
+ATOM    120 H20Z DAPA    1       2.668  -2.259 -16.395  1.00  0.00      DAPA
+END

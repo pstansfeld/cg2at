@@ -1,0 +1,154 @@
+[ NC3 ]
+ATOM      1  N   SAPC    1      -2.089   1.674  -0.603  1.00  0.00      SAPC
+ATOM      2  C12 SAPC    1      -0.854   1.050   0.111  1.00  0.00      SAPC
+ATOM      3 H12A SAPC    1      -0.911  -0.010   0.312  1.00  0.00      SAPC
+ATOM      4 H12B SAPC    1      -0.823   1.433   1.121  1.00  0.00      SAPC
+ATOM      5  C13 SAPC    1      -2.535   0.887  -1.846  1.00  0.00      SAPC
+ATOM      6 H13A SAPC    1      -1.725   0.743  -2.546  1.00  0.00      SAPC
+ATOM      7 H13B SAPC    1      -2.886  -0.081  -1.521  1.00  0.00      SAPC
+ATOM      8 H13C SAPC    1      -3.328   1.455  -2.309  1.00  0.00      SAPC
+ATOM      9  C14 SAPC    1      -3.303   1.680   0.325  1.00  0.00      SAPC
+ATOM     10 H14A SAPC    1      -3.261   2.512   1.012  1.00  0.00      SAPC
+ATOM     11 H14B SAPC    1      -4.193   1.783  -0.278  1.00  0.00      SAPC
+ATOM     12 H14C SAPC    1      -3.377   0.682   0.732  1.00  0.00      SAPC
+ATOM     13  C15 SAPC    1      -1.819   3.104  -0.938  1.00  0.00      SAPC
+ATOM     14 H15A SAPC    1      -2.726   3.609  -0.640  1.00  0.00      SAPC
+ATOM     15 H15B SAPC    1      -1.103   3.593  -0.294  1.00  0.00      SAPC
+ATOM     16 H15C SAPC    1      -1.643   3.144  -2.003  1.00  0.00      SAPC
+ATOM     17  C11 SAPC    1       0.597   1.245  -0.469  1.00  0.00      SAPC
+ATOM     18 H11A SAPC    1       0.835   2.330  -0.466  1.00  0.00      SAPC
+ATOM     19 H11B SAPC    1       0.609   0.888  -1.522  1.00  0.00      SAPC
+[ PO4 ]
+ATOM     20  P   SAPC    1       1.434  -1.010   0.550  1.00  0.00      SAPC
+ATOM     21  O13 SAPC    1       2.861  -1.412   0.771  1.00  0.00      SAPC
+ATOM     22  O14 SAPC    1       0.433  -1.508   1.490  1.00  0.00      SAPC
+ATOM     23  O12 SAPC    1       1.476   0.581   0.449  1.00  0.00      SAPC
+ATOM     24  O11 SAPC    1       0.967  -1.519  -0.879  1.00  0.00      SAPC
+[ GL1 ]
+ATOM     25  C1  SAPC    1       1.959  -1.914  -1.845  1.00  0.00      SAPC
+ATOM     26  HA  SAPC    1       2.657  -1.112  -2.168  1.00  0.00      SAPC
+ATOM     27  HB  SAPC    1       2.464  -2.795  -1.395  1.00  0.00      SAPC
+ATOM     28  C2  SAPC    1       1.300  -2.438  -3.150  1.00  0.00      SAPC
+ATOM     29  HS  SAPC    1       2.124  -2.670  -3.857  1.00  0.00      SAPC
+ATOM     30  O21 SAPC    1       0.531  -1.353  -3.613  1.00  0.00      SAPC
+ATOM     31  C21 SAPC    1       1.093  -0.318  -4.130  1.00  0.00      SAPC
+ATOM     32  O22 SAPC    1       2.283  -0.246  -4.526  1.00  0.00      SAPC
+[ GL2 ]
+ATOM     33  C3  SAPC    1       0.473  -3.755  -3.030  1.00  0.00      SAPC
+ATOM     34  HX  SAPC    1      -0.051  -3.810  -2.052  1.00  0.00      SAPC
+ATOM     35  HY  SAPC    1       1.248  -4.549  -2.987  1.00  0.00      SAPC
+ATOM     36  O31 SAPC    1      -0.334  -4.013  -4.186  1.00  0.00      SAPC
+ATOM     37  C31 SAPC    1      -1.565  -3.567  -4.117  1.00  0.00      SAPC
+ATOM     38  O32 SAPC    1      -2.061  -2.962  -3.165  1.00  0.00      SAPC
+[ C1A ]
+ATOM     39  C22 SAPC    1       0.062   0.805  -4.231  1.00  0.00      SAPC
+ATOM     40  H2R SAPC    1      -0.928   0.355  -4.003  1.00  0.00      SAPC
+ATOM     41  H2S SAPC    1       0.249   1.637  -3.519  1.00  0.00      SAPC
+ATOM     42  C23 SAPC    1       0.174   1.529  -5.558  1.00  0.00      SAPC
+ATOM     43  H3R SAPC    1       1.167   1.989  -5.749  1.00  0.00      SAPC
+ATOM     44  H3S SAPC    1      -0.584   2.330  -5.694  1.00  0.00      SAPC
+ATOM     45  C24 SAPC    1      -0.124   0.650  -6.854  1.00  0.00      SAPC
+ATOM     46  H4R SAPC    1      -0.000   1.269  -7.743  1.00  0.00      SAPC
+ATOM     47  H4S SAPC    1      -1.148   0.280  -6.808  1.00  0.00      SAPC
+[ D2A ]
+ATOM     48  C25 SAPC    1       0.818  -0.515  -6.929  1.00  0.00      SAPC
+ATOM     49  H5R SAPC    1       0.906  -1.146  -6.045  1.00  0.00      SAPC
+ATOM     50  C26 SAPC    1       1.560  -0.842  -7.996  1.00  0.00      SAPC
+ATOM     51  H6R SAPC    1       2.203  -1.718  -7.910  1.00  0.00      SAPC
+ATOM     52  C27 SAPC    1       1.576  -0.101  -9.300  1.00  0.00      SAPC
+ATOM     53  H7R SAPC    1       2.568   0.315  -9.478  1.00  0.00      SAPC
+ATOM     54  H7S SAPC    1       0.842   0.705  -9.278  1.00  0.00      SAPC
+ATOM     55  C28 SAPC    1       1.214  -1.123 -10.431  1.00  0.00      SAPC
+ATOM     56  H8R SAPC    1       0.205  -1.562 -10.436  1.00  0.00      SAPC
+[ D3A ]
+ATOM     57  C29 SAPC    1       2.029  -1.530 -11.478  1.00  0.00      SAPC
+ATOM     58  H9R SAPC    1       1.667  -2.401 -12.044  1.00  0.00      SAPC
+ATOM     59 C210 SAPC    1       3.387  -1.109 -11.778  1.00  0.00      SAPC
+ATOM     60 H10R SAPC    1       3.920  -1.902 -12.345  1.00  0.00      SAPC
+ATOM     61 H10S SAPC    1       3.924  -1.003 -10.811  1.00  0.00      SAPC
+ATOM     62 C211 SAPC    1       3.437   0.246 -12.474  1.00  0.00      SAPC
+ATOM     63 H11R SAPC    1       3.005   1.171 -12.064  1.00  0.00      SAPC
+ATOM     64 C212 SAPC    1       3.952   0.472 -13.726  1.00  0.00      SAPC
+ATOM     65 H12R SAPC    1       4.012   1.489 -14.140  1.00  0.00      SAPC
+[ D4A ]
+ATOM     66 C213 SAPC    1       4.568  -0.580 -14.593  1.00  0.00      SAPC
+ATOM     67 H13R SAPC    1       5.409  -1.031 -14.022  1.00  0.00      SAPC
+ATOM     68 H13S SAPC    1       5.073  -0.002 -15.396  1.00  0.00      SAPC
+ATOM     69 C214 SAPC    1       3.525  -1.495 -15.192  1.00  0.00      SAPC
+ATOM     70 H14R SAPC    1       3.475  -2.394 -14.561  1.00  0.00      SAPC
+ATOM     71 C215 SAPC    1       2.762  -1.351 -16.302  1.00  0.00      SAPC
+ATOM     72 H15R SAPC    1       2.139  -2.196 -16.630  1.00  0.00      SAPC
+ATOM     73 C216 SAPC    1       2.750  -0.202 -17.223  1.00  0.00      SAPC
+ATOM     74 H16R SAPC    1       3.543   0.467 -16.827  1.00  0.00      SAPC
+ATOM     75 H16S SAPC    1       1.765   0.313 -17.240  1.00  0.00      SAPC
+[ C5A ]
+ATOM     76 C217 SAPC    1       3.274  -0.624 -18.654  1.00  0.00      SAPC
+ATOM     77 H17R SAPC    1       2.447  -1.246 -19.058  1.00  0.00      SAPC
+ATOM     78 H17S SAPC    1       4.248  -1.154 -18.580  1.00  0.00      SAPC
+ATOM     79 C218 SAPC    1       3.421   0.710 -19.446  1.00  0.00      SAPC
+ATOM     80 H18R SAPC    1       4.354   1.221 -19.126  1.00  0.00      SAPC
+ATOM     81 H18S SAPC    1       2.607   1.404 -19.144  1.00  0.00      SAPC
+ATOM     82 C219 SAPC    1       3.503   0.628 -20.994  1.00  0.00      SAPC
+ATOM     83 H19R SAPC    1       4.149   1.478 -21.299  1.00  0.00      SAPC
+ATOM     84 H19S SAPC    1       2.479   0.788 -21.395  1.00  0.00      SAPC
+ATOM     85 C220 SAPC    1       3.954  -0.699 -21.617  1.00  0.00      SAPC
+ATOM     86 H20R SAPC    1       4.968  -1.037 -21.313  1.00  0.00      SAPC
+ATOM     87 H20S SAPC    1       4.134  -0.486 -22.692  1.00  0.00      SAPC
+ATOM     88 H20T SAPC    1       3.138  -1.438 -21.468  1.00  0.00      SAPC
+[ C1B ]
+ATOM     89  C32 SAPC    1      -2.292  -3.930  -5.411  1.00  0.00      SAPC
+ATOM     90  H2X SAPC    1      -3.389  -3.996  -5.248  1.00  0.00      SAPC
+ATOM     91  H2Y SAPC    1      -1.957  -4.923  -5.780  1.00  0.00      SAPC
+ATOM     92  C33 SAPC    1      -2.090  -2.884  -6.601  1.00  0.00      SAPC
+ATOM     93  H3X SAPC    1      -1.020  -2.614  -6.726  1.00  0.00      SAPC
+ATOM     94  H3Y SAPC    1      -2.494  -1.890  -6.312  1.00  0.00      SAPC
+ATOM     95  C34 SAPC    1      -2.604  -3.340  -7.943  1.00  0.00      SAPC
+ATOM     96  H4X SAPC    1      -3.688  -3.533  -7.789  1.00  0.00      SAPC
+ATOM     97  H4Y SAPC    1      -2.107  -4.186  -8.465  1.00  0.00      SAPC
+ATOM     98  C35 SAPC    1      -2.825  -2.132  -8.957  1.00  0.00      SAPC
+ATOM     99  H5X SAPC    1      -1.854  -1.636  -9.168  1.00  0.00      SAPC
+ATOM    100  H5Y SAPC    1      -3.490  -1.441  -8.396  1.00  0.00      SAPC
+ATOM    101  C36 SAPC    1      -3.512  -2.495 -10.295  1.00  0.00      SAPC
+ATOM    102  H6X SAPC    1      -3.424  -1.565 -10.897  1.00  0.00      SAPC
+ATOM    103  H6Y SAPC    1      -4.606  -2.684 -10.254  1.00  0.00      SAPC
+[ C2B ]
+ATOM    104  C37 SAPC    1      -2.849  -3.700 -10.960  1.00  0.00      SAPC
+ATOM    105  H7X SAPC    1      -3.211  -4.668 -10.554  1.00  0.00      SAPC
+ATOM    106  H7Y SAPC    1      -1.753  -3.619 -10.797  1.00  0.00      SAPC
+ATOM    107  C38 SAPC    1      -3.201  -3.810 -12.523  1.00  0.00      SAPC
+ATOM    108  H8X SAPC    1      -4.245  -4.165 -12.394  1.00  0.00      SAPC
+ATOM    109  H8Y SAPC    1      -2.583  -4.627 -12.954  1.00  0.00      SAPC
+ATOM    110  C39 SAPC    1      -3.110  -2.559 -13.454  1.00  0.00      SAPC
+ATOM    111  H9X SAPC    1      -3.854  -1.785 -13.168  1.00  0.00      SAPC
+ATOM    112  H9Y SAPC    1      -3.370  -2.902 -14.478  1.00  0.00      SAPC
+ATOM    113 C310 SAPC    1      -1.705  -1.867 -13.582  1.00  0.00      SAPC
+ATOM    114 H10X SAPC    1      -0.780  -2.481 -13.554  1.00  0.00      SAPC
+ATOM    115 H10Y SAPC    1      -1.680  -1.395 -12.576  1.00  0.00      SAPC
+[ C3B ]
+ATOM    116 C311 SAPC    1      -1.600  -0.783 -14.661  1.00  0.00      SAPC
+ATOM    117 H11X SAPC    1      -0.773  -0.107 -14.356  1.00  0.00      SAPC
+ATOM    118 H11Y SAPC    1      -2.519  -0.171 -14.784  1.00  0.00      SAPC
+ATOM    119 C312 SAPC    1      -1.146  -1.523 -15.894  1.00  0.00      SAPC
+ATOM    120 H12X SAPC    1      -1.948  -2.245 -16.157  1.00  0.00      SAPC
+ATOM    121 H12Y SAPC    1      -0.286  -2.205 -15.724  1.00  0.00      SAPC
+ATOM    122 C313 SAPC    1      -1.008  -0.694 -17.230  1.00  0.00      SAPC
+ATOM    123 H13X SAPC    1      -0.459   0.241 -16.985  1.00  0.00      SAPC
+ATOM    124 H13Y SAPC    1      -2.062  -0.490 -17.514  1.00  0.00      SAPC
+ATOM    125 C314 SAPC    1      -0.480  -1.510 -18.384  1.00  0.00      SAPC
+ATOM    126 H14X SAPC    1      -0.909  -2.533 -18.456  1.00  0.00      SAPC
+ATOM    127 H14Y SAPC    1       0.602  -1.689 -18.208  1.00  0.00      SAPC
+[ C4B ]
+ATOM    128 C315 SAPC    1      -0.379  -0.795 -19.832  1.00  0.00      SAPC
+ATOM    129 H15X SAPC    1       0.109  -1.389 -20.634  1.00  0.00      SAPC
+ATOM    130 H15Y SAPC    1       0.207   0.136 -19.676  1.00  0.00      SAPC
+ATOM    131 C316 SAPC    1      -1.784  -0.421 -20.324  1.00  0.00      SAPC
+ATOM    132 H16X SAPC    1      -1.765  -0.025 -21.361  1.00  0.00      SAPC
+ATOM    133 H16Y SAPC    1      -2.044   0.499 -19.757  1.00  0.00      SAPC
+ATOM    134 C317 SAPC    1      -2.787  -1.566 -20.154  1.00  0.00      SAPC
+ATOM    135 H17X SAPC    1      -2.795  -1.961 -19.115  1.00  0.00      SAPC
+ATOM    136 H17Y SAPC    1      -2.430  -2.476 -20.682  1.00  0.00      SAPC
+ATOM    137 C318 SAPC    1      -4.235  -1.184 -20.564  1.00  0.00      SAPC
+ATOM    138 H18X SAPC    1      -4.911  -2.066 -20.582  1.00  0.00      SAPC
+ATOM    139 H18Y SAPC    1      -4.138  -0.782 -21.595  1.00  0.00      SAPC
+ATOM    140 H18Z SAPC    1      -4.671  -0.378 -19.935  1.00  0.00      SAPC
+END
