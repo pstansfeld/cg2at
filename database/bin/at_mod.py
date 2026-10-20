@@ -387,6 +387,33 @@ def fragment_template(resname, frag_template):
         _template_cache[resname] = (coords, bonded)
     return _template_cache[resname]
 
+def six_membered_rings(bonded):
+#### six-membered rings of the template's heavy-atom bond graph, as ordered atom tuples
+    rings, seen = [], set()
+    def extend(path):
+        if len(path) == 6:
+            if path[0] in bonded[path[-1]] and frozenset(path) not in seen:
+                seen.add(frozenset(path))
+                rings.append(tuple(path))
+            return
+        for nxt in bonded[path[-1]]:
+            if nxt > path[0] and nxt not in path:
+                extend(path + [nxt])
+    for start in bonded:
+        extend([start])
+#### drop cycles with a chord (fused-ring outlines), keeping only true rings
+    return [ring for ring in rings if all(len(bonded[atom] & set(ring)) == 2 for atom in ring)]
+
+def ring_pucker_theta(coords):
+#### Cremer-Pople theta (degrees) of a six-membered ring: ~0 or ~180 chair, ~90 boat/twist-boat
+    r = np.array(coords) - np.mean(coords, axis=0)
+    j = np.arange(6)
+    normal = np.cross((r * np.sin(2*np.pi*j/6)[:, None]).sum(0), (r * np.cos(2*np.pi*j/6)[:, None]).sum(0))
+    z = r.dot(normal / np.linalg.norm(normal))
+    q2 = np.hypot(np.sqrt(2/6) * (z * np.cos(4*np.pi*j/6)).sum(), np.sqrt(2/6) * (z * np.sin(4*np.pi*j/6)).sum())
+    q3 = np.sqrt(1/6) * (z * (-1)**j).sum()
+    return math.degrees(math.atan2(q2, q3)), math.hypot(q2, q3)
+
 def dihedral(a, b, c, d):
     b0, b1, b2 = a - b, c - b, d - c
     b1 = b1 / np.linalg.norm(b1)

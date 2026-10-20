@@ -436,8 +436,101 @@ def sort_hydration(line_sep, residue):
     else:
         print('There is a issue with the hydration section of: ', residue)
 
-def get_fragment_topology(residue, location):
+#### Ring grouping. Beads are placed as separate rigid bodies unless grouped, so a ring whose
+#### atoms span several beads (e.g. a Martini 3 inositol or sugar) is torn apart and rebuilt by
+#### minimisation, which rarely recovers the chair. Beads that share a ring are therefore placed
+#### as one group, together with any groups given in the fragment's .top file.
+
+def ring_bead_sets(location):
+#### sets of beads joined by ring bonds (bonds that are not bridges in the heavy-atom graph)
+    beads, coords, bead = [], [], None
+    with open(location, 'r') as pdb_input:
+        for line in pdb_input:
+            if line.startswith('['):
+                bead = strip_header(line)
+            elif line.startswith('ATOM'):
+                line_sep = pdbatom(line)
+                if not is_hydrogen(line_sep['atom_name']):
+                    beads.append(bead)
+                    coords.append([line_sep['x'], line_sep['y'], line_sep['z']])
+    if len(coords) < 3:
+        return []
+    from scipy.spatial import cKDTree
+    pairs = cKDTree(np.array(coords)).query_pairs(1.75)   #### fragment coordinates are in Angstrom
+    adjacent = {i: [] for i in range(len(coords))}
+    for i, j in pairs:
+        adjacent[i].append(j)
+        adjacent[j].append(i)
+#### bridges by iterative depth-first search (Tarjan)
+    order, low, bridges, counter = {}, {}, set(), 0
+    for root in adjacent:
+        if root in order:
+            continue
+        order[root] = low[root] = counter
+        counter += 1
+        stack = [(root, None, iter(adjacent[root]))]
+        while stack:
+            node, parent, neighbours = stack[-1]
+            for nxt in neighbours:
+                if nxt == parent:
+                    continue
+                if nxt in order:
+                    low[node] = min(low[node], order[nxt])
+                else:
+                    order[nxt] = low[nxt] = counter
+                    counter += 1
+                    stack.append((nxt, node, iter(adjacent[nxt])))
+                break
+            else:
+                stack.pop()
+                if parent is not None:
+                    low[parent] = min(low[parent], low[node])
+                    if low[node] > order[parent]:
+                        bridges.add(frozenset((parent, node)))
+    parent_bead = {}
+    def find(bead):
+        while parent_bead.setdefault(bead, bead) != bead:
+            bead = parent_bead[bead]
+        return bead
+    for i, j in pairs:
+        if frozenset((i, j)) not in bridges and beads[i] != beads[j]:
+            parent_bead[find(beads[i])] = find(beads[j])
+    sets = {}
+    for bead in parent_bead:
+        sets.setdefault(find(bead), set()).add(bead)
+    return [bead_set for bead_set in sets.values() if len(bead_set) > 1]
+
+def add_ring_groups(topology, location):
+#### merges beads that share a ring with each other and with the .top groups they belong to
+    ring_sets = ring_bead_sets(location)
+    if not ring_sets:
+        return topology
+    parent_bead = {}
+    def find(bead):
+        while parent_bead.setdefault(bead, bead) != bead:
+            bead = parent_bead[bead]
+        return bead
+    by_group = {}
+    for bead, group in topology['GROUPS'].items():
+        if bead != 'group_max':
+            by_group.setdefault(group, []).append(bead)
+    for bead_set in list(by_group.values()) + [list(s) for s in ring_sets]:
+        for bead in bead_set[1:]:
+            parent_bead[find(bead)] = find(bead_set[0])
+    groups, ids = {}, {}
+    for bead in parent_bead:
+        root = find(bead)
+        if root not in ids:
+            ids[root] = len(ids) + 1
+        groups[bead] = ids[root]
+    groups['group_max'] = len(ids) + 1
+    topology['GROUPS'] = groups
+    return topology
+
+def get_fragment_topology(residue, location, ring_groups=False):
     topology = sep_fragments_topology(residue, location[:-4])
+    if ring_groups and not g_var.args.mod:
+        topology = add_ring_groups(topology, location)
     g_var.res_top[residue] = {'ATOMS': [], 'C_TERMINAL':topology['C_TERMINAL'], 'N_TERMINAL':topology['N_TERMINAL'], \
                              'CHIRAL':topology['CHIRAL'], 'GROUPS':{}, 'CONNECT':topology['CONNECT']}
     with open(location, 'r') as pdb_input:
@@ -513,8 +606,8 @@ def fetch_fragment_single():
             for residue in frag_dir[directory][1:]:    
                 if residue not in g_var.res_top:
                     location = fragment_location(residue)
-                    grouped_atoms = get_fragment_topology(residue, location)
-                    if frag_val <=1: 
+                    grouped_atoms = get_fragment_topology(residue, location, ring_groups=frag_val == 2)
+                    if frag_val <=1:
                         at_mass = fetch_atoms_water_ion(frag_dir[directory][0]+residue+'/', g_var.at_mass)
                         g_var.hydrogen[residue], g_var.heavy_bond[residue], g_var.sorted_connect[residue] = {},{},{}
                         residue_list = [residue]

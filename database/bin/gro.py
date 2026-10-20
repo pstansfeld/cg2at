@@ -112,8 +112,9 @@ def make_min(residue):#, fragments):
 
 #### Double-bond restraints. Placing rigid fragments on CG beads leaves the bonds between
 #### beads stretched or compressed, and minimising that away can rotate C=C double bonds
-#### through their barrier (cis lipid tails come out trans). Each double bond in a
-#### non-protein fragment is therefore held at its fragment dihedrals by dihedral restraints
+#### through their barrier (cis lipid tails come out trans) and can flip ring chairs. Each
+#### double bond in a non-protein fragment, and each saturated six-membered ring that is a
+#### chair in the fragment, is therefore held at its fragment dihedrals by dihedral restraints
 #### (CISRES) during the per-residue minimisation and the merged minimisation and NVT.
 
 def cisres_itp_name(residue_type):
@@ -161,14 +162,27 @@ def write_cisres(residue_type, itp_file):
                     quartet = [atom_names[x] for x in (i, a, b, l)]
                     if all(name in names for name in quartet):
                         phi = np.degrees(at_mod.dihedral(*[coords[x] for x in (i, a, b, l)]))
-                        restraints.append([names[name] for name in quartet] + [phi])
+                        restraints.append([names[name] for name in quartet] + [phi, 10.0])
+#### saturated six-membered rings (sugars, inositol, steroid rings) that are chairs in the
+#### fragment: their ring torsions are held too, so the chair (and which chair) survives
+    for ring in at_mod.six_membered_rings(bonded):
+        if any(atom in sp2 or (atom_names[atom].startswith('C') and neighbours(atom) != 4) for atom in ring):
+            continue
+        theta, amplitude = at_mod.ring_pucker_theta([coords[atom] for atom in ring])
+        if amplitude < 0.3 * g_var.sf or 25 < theta < 155:
+            continue
+        for k in range(6):
+            quartet = [ring[(k + m) % 6] for m in range(4)]
+            if all(atom_names[x] in names for x in quartet):
+                phi = np.degrees(at_mod.dihedral(*[coords[x] for x in quartet]))
+                restraints.append([names[atom_names[x]] for x in quartet] + [phi, 15.0])
     if not restraints:
         return False
     with open(g_var.working_dir+residue_type+'/'+cisres_itp_name(residue_type), 'w') as cisres:
-        cisres.write('; holds double bonds at the fragment geometry during CG2AT minimisation/NVT\n')
+        cisres.write('; holds double bonds and chair rings at the fragment geometry during CG2AT minimisation/NVT\n')
         cisres.write('[ dihedral_restraints ]\n; ai   aj   ak   al  type     phi  dphi   kfac\n')
-        for ai, aj, ak, al, phi in restraints:
-            cisres.write('{:5d}{:5d}{:5d}{:5d}    1 {:8.2f}  10.0  1000.0\n'.format(ai, aj, ak, al, phi))
+        for ai, aj, ak, al, phi, dphi in restraints:
+            cisres.write('{:5d}{:5d}{:5d}{:5d}    1 {:8.2f}  {:4.1f}  1000.0\n'.format(ai, aj, ak, al, phi, dphi))
     return True
 
 def cisres_include(residue_type):
