@@ -26,28 +26,17 @@ OL21 is a 2021 DNA force field, so far tested on B-DNA and Z-DNA.
 Zgarbova, M.; Sponer, J.; Jurecka, P., Z-DNA as a Touchstone for Additive Empirical Force Fields and a Refinement of the Alpha/Gamma DNA Torsions for AMBER J. Chem. Theory Comput. 2021, https://doi.org/10.1021/acs.jctc.1c00697
 
 
-charmm36 forecefields are available:
+CHARMM36 is shipped as a single force field:
 
-Base level forcefield with no updates (cannot use with lipids):
+- charmm36-cg2at.ff = CHARMM36m protein / CHARMM36 lipids (July 2022 toppar), ported to GROMACS with charmm2gmx,
+                      with the lipid atom types and parameters CG2AT's fragments need.
+                      See charmm36-cg2at.ff/forcefield.doc for the source files and references.
 
-charmm36-mar2019.ff
-
-charmm36-jul2020.ff
-
-
-Base level forcefield with OW,HW added to atomtypes (cannot use with modified side chains):
-
-charmm36-jul2021.ff
-
-charmm36_ljpme-jul2021.ff.  # updated LJ long-range dispersion correction: ljpme, Yu et al., doi: 10.1021/acs.jctc.0c01326
-
-
-Updated forcefields to contain lipid atom types, non-bonded and bonded parameters.
-
-charmm36-mar2019-updated.ff
-
-charmm36-jul2020-updated.ff
-
+Select it with -ff charmm36-cg2at. The earlier CHARMM36 releases that used to ship here
+(charmm36-mar2019, charmm36-mar2019-updated, charmm36-jul2020, charmm36-jul2020-updated,
+charmm36-jul2021, charmm36-jul2022) are accepted as aliases for it. The LJ-PME variants
+(charmm36_ljpme-jul2021/jul2022) are no longer shipped and have no alias, since they need
+LJ-PME run settings; pass their folder with -ff /path/to/name.ff if you need them.
 
 Charmm36 references:
 
