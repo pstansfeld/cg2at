@@ -359,6 +359,91 @@ def apply_rotations(atomistic_fragments,cg_resid, group_fit, center, xyz_rot_app
             atomistic_fragments[cg_resid][atom] = group_fit[bead][atom].copy()
     return atomistic_fragments
 
+## Spin correction for fragment groups.
+## A group joined to the rest of the residue by single bonds (e.g. a lipid tail bead)
+## is only fixed by its connection points, so the rotational fit leaves its spin about
+## the axis through them undetermined. Left arbitrary, neighbouring beads are twisted
+## against each other and double bonds near bead boundaries come out trans. The spin
+## is chosen instead to reproduce the fragment's own dihedrals across the join.
+
+_template_cache = {}
+
+def fragment_template(resname, frag_template):
+#### heavy-atom coordinates and bonds of the whole-molecule fragment (cached per residue)
+    if resname not in _template_cache:
+        coords = {}
+        for group in frag_template.values():
+            for bead in group.values():
+                for atom_number, atom in bead.items():
+                    if not gen.is_hydrogen(atom['atom']):
+                        coords[atom_number] = np.array(atom['coord'], dtype=float)
+        numbers = list(coords)
+        bonded = {number: set() for number in numbers}
+        if len(numbers) > 1:
+            xyz = np.array([coords[number] for number in numbers])
+            for i, j in cKDTree(xyz).query_pairs(1.75 * g_var.sf):
+                bonded[numbers[i]].add(numbers[j])
+                bonded[numbers[j]].add(numbers[i])
+        _template_cache[resname] = (coords, bonded)
+    return _template_cache[resname]
+
+def dihedral(a, b, c, d):
+    b0, b1, b2 = a - b, c - b, d - c
+    b1 = b1 / np.linalg.norm(b1)
+    v = b0 - np.dot(b0, b1) * b1
+    w = b2 - np.dot(b2, b1) * b1
+    return math.atan2(np.dot(np.cross(b1, v), w), np.dot(v, w))
+
+def rotation_about_axis(axis, angle):
+#### row-vector rotation matrix (used as coord.dot(matrix)) for a right-handed turn about axis
+    x, y, z = axis / np.linalg.norm(axis)
+    c, s = math.cos(angle), math.sin(angle)
+    C = 1 - c
+    return np.array([[c + x*x*C, x*y*C - z*s, x*z*C + y*s],
+                     [y*x*C + z*s, c + y*y*C, y*z*C - x*s],
+                     [z*x*C - y*s, z*y*C + x*s, c + z*z*C]]).T
+
+def correct_group_spin(residue, group_fit, template):
+#### spins a newly placed group about the axis through its connection atoms so the
+#### dihedrals across its bond to the already placed atoms match the fragment template
+    t_coords, bonded = template
+    group_atoms = {atom for bead in group_fit.values() for atom in bead if atom in t_coords}
+    placed = {atom for atom in residue if atom in t_coords and atom not in group_atoms}
+    if not group_atoms or not placed:
+        return residue
+    joins = [(a, b) for a in group_atoms for b in bonded[a] if b in placed]
+    if len(joins) != 1:      #### only the single-attachment case has a free spin
+        return residue
+    a, b = joins[0]
+    onward = [x for x in group_atoms for y in bonded[x] if y not in group_atoms and y not in placed]
+    pivot = residue[a]['coord']
+    if onward:
+        axis = residue[onward[0]]['coord'] - pivot
+    else:
+        axis = np.mean([residue[x]['coord'] for x in group_atoms], axis=0) - pivot
+    if np.linalg.norm(axis) < 1e-3 * g_var.sf:
+        return residue
+    quartets = [(i, a, b, l) for i in bonded[a] if i in group_atoms
+                for l in bonded[b] if l in placed]
+    if not quartets:
+        return residue
+    targets = np.array([dihedral(*[t_coords[x] for x in q]) for q in quartets])
+    best_angle, best_score = 0.0, None
+    for angle in np.radians(np.arange(0, 360, 5)):
+        rot = rotation_about_axis(axis, angle)
+        current = np.array([dihedral((residue[i]['coord'] - pivot).dot(rot) + pivot,
+                                     residue[j]['coord'], residue[k]['coord'], residue[l]['coord'])
+                            for i, j, k, l in quartets])
+        score = np.sum(1 - np.cos(current - targets))
+        if best_score is None or score < best_score - 1e-9:
+            best_angle, best_score = angle, score
+    if best_angle:
+        rot = rotation_about_axis(axis, best_angle)
+        for bead in group_fit.values():
+            for atom in bead:
+                residue[atom]['coord'] = (residue[atom]['coord'] - pivot).dot(rot) + pivot
+    return residue
+
 ### end fragment information
 ### linked residue connectivity start
 

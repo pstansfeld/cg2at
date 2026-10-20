@@ -58,6 +58,7 @@ def at_np_solvent(cg_residue_type,cg_residues):
     # residue type — look them up once before the loop.
     frag_location = gen.fragment_location(cg_residue_type)
     frag_template, frag_mass_template = at_mod.get_atomistic(frag_location, cg_residue_type)
+    template = at_mod.fragment_template(cg_residue_type, frag_template)
 
     total = len(cg_residues)
     for cg_resid, cg_residue in enumerate(cg_residues):
@@ -74,7 +75,8 @@ def at_np_solvent(cg_residue_type,cg_residues):
             xyz_rot_apply=at_mod.get_rotation(cg_connect, at_connect, center, cg_residue_type, group, cg_resid)
 
             atomistic_fragments = at_mod.apply_rotations(atomistic_fragments,cg_resid, group_fit, center, xyz_rot_apply)
-            
+            atomistic_fragments[cg_resid] = at_mod.correct_group_spin(atomistic_fragments[cg_resid], group_fit, template)
+
         if cg_residue_type in g_var.np_residues:
             atomistic_fragments[cg_resid] = at_mod.check_hydrogens(atomistic_fragments[cg_resid])
         if len(g_var.res_top[cg_residue_type]['CHIRAL']) > 1:

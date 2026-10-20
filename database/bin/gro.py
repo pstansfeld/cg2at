@@ -4,6 +4,7 @@ import os, sys
 import numpy as np
 import subprocess 
 from shutil import rmtree
+from scipy.spatial import cKDTree
 import time
 import gen, g_var, at_mod, read_in, at_mod_p
 from exceptions import CG2ATError, InputError, TopologyError, GromacsError
@@ -107,7 +108,71 @@ def make_min(residue):#, fragments):
 #### makes em.mdp file for each residue
     if not os.path.exists('em_'+residue+'.mdp'):
         with open('em_'+residue+'.mdp','w') as em:
-            em.write('define = \n integrator = steep\nnsteps = 20000\nemtol = 750\nemstep = 0.001\ncutoff-scheme = Verlet\n')
+            em.write('define = -DCISRES\n integrator = steep\nnsteps = 20000\nemtol = 750\nemstep = 0.001\ncutoff-scheme = Verlet\n')
+
+#### Double-bond restraints. Placing rigid fragments on CG beads leaves the bonds between
+#### beads stretched or compressed, and minimising that away can rotate C=C double bonds
+#### through their barrier (cis lipid tails come out trans). Each double bond in a
+#### non-protein fragment is therefore held at its fragment dihedrals by dihedral restraints
+#### (CISRES) during the per-residue minimisation and the merged minimisation and NVT.
+
+def cisres_itp_name(residue_type):
+    return gen.swap_to_solvent(residue_type)+'_cisres.itp'
+
+def write_cisres(residue_type, itp_file):
+#### writes <residue>_cisres.itp in the residue directory; returns True if it has restraints
+    names, in_atoms, molecules = {}, False, 0
+    with open(itp_file, 'r') as itp_input:
+        for line in itp_input:
+            line_sep = line.split(';')[0].split()
+            if not line_sep:
+                continue
+            if line_sep[0] == '[':
+                in_atoms = line_sep[1] == 'atoms'
+                molecules += line_sep[1] == 'moleculetype'
+                continue
+            if in_atoms and molecules == 1 and line_sep[0].isdigit():
+                names.setdefault(line_sep[4], int(line_sep[0]))
+    frag_template, _ = at_mod.get_atomistic(gen.fragment_location(residue_type), residue_type)
+    coords, bonded = at_mod.fragment_template(residue_type, frag_template)
+    atom_names, hydrogens = {}, []
+    for group in frag_template.values():
+        for bead in group.values():
+            for number, atom in bead.items():
+                atom_names[number] = atom['atom']
+                if gen.is_hydrogen(atom['atom']):
+                    hydrogens.append(np.array(atom['coord'], dtype=float))
+#### a carbon with three neighbours (hydrogens included) is sp2; two bonded sp2 carbons form a
+#### C=C (or aromatic) bond, while an ester carbonyl carbon is bonded to an sp3 carbon
+    h_tree = cKDTree(np.array(hydrogens)) if hydrogens else None
+    def neighbours(number):
+        count = len(bonded[number])
+        if h_tree is not None:
+            count += len(h_tree.query_ball_point(coords[number], 1.25 * g_var.sf))
+        return count
+    sp2 = {number for number in coords if atom_names[number].startswith('C') and neighbours(number) == 3}
+    restraints = []
+    for a in coords:
+        for b in bonded[a]:
+            if b <= a or a not in sp2 or b not in sp2:
+                continue
+            for i in bonded[a] - {b}:
+                for l in bonded[b] - {a}:
+                    quartet = [atom_names[x] for x in (i, a, b, l)]
+                    if all(name in names for name in quartet):
+                        phi = np.degrees(at_mod.dihedral(*[coords[x] for x in (i, a, b, l)]))
+                        restraints.append([names[name] for name in quartet] + [phi])
+    if not restraints:
+        return False
+    with open(g_var.working_dir+residue_type+'/'+cisres_itp_name(residue_type), 'w') as cisres:
+        cisres.write('; holds double bonds at the fragment geometry during CG2AT minimisation/NVT\n')
+        cisres.write('[ dihedral_restraints ]\n; ai   aj   ak   al  type     phi  dphi   kfac\n')
+        for ai, aj, ak, al, phi in restraints:
+            cisres.write('{:5d}{:5d}{:5d}{:5d}    1 {:8.2f}  10.0  1000.0\n'.format(ai, aj, ak, al, phi))
+    return True
+
+def cisres_include(residue_type):
+    return '#ifdef CISRES\n#include \"'+cisres_itp_name(residue_type)+'\"\n#endif\n'
 
 def pdb2gmx_minimise(chain, pdb2gmx_selections, res_type, q=None):
     os.chdir(g_var.working_dir+'/'+res_type)
@@ -336,8 +401,12 @@ def write_topol(residue_type, residue_number, chain):
         if residue_type in g_var.sol_residues+g_var.ion_residues+g_var.np_residues:
             for directory in g_var.sol_directories+g_var.ion_directories+g_var.np_directories:
                 if os.path.exists(directory[0]+residue_type+'/'+gen.swap_to_solvent(residue_type)+'.itp'):
-                    topol_write.write('#include \"'+directory[0]+residue_type+'/'+gen.swap_to_solvent(residue_type)+'.itp\"')
+                    itp_file = directory[0]+residue_type+'/'+gen.swap_to_solvent(residue_type)+'.itp'
+                    topol_write.write('#include \"'+itp_file+'\"')
+                    if residue_type in g_var.np_residues and write_cisres(residue_type, itp_file):
+                        topol_write.write('\n'+cisres_include(residue_type))
                     found=True
+                    break
             if not found:
                 raise InputError('cannot find itp: '+residue_type+'/'+gen.swap_to_solvent(residue_type)+'.itp')
         elif os.path.exists(g_var.working_dir+'/'+residue_type.split('_')[0]+'/'+residue_type+chain+'.itp'):
@@ -440,6 +509,10 @@ def write_merged_topol():
                         gen.file_copy_and_check(directory[0]+residue_type+'/'+residue_type_name+'.itp', residue_type_name+'.itp')
                         gen.file_copy_and_check(directory[0]+residue_type+'/'+residue_type_name+'_posre.itp', residue_type_name+'_posre.itp')
                         strip_atomtypes(residue_type_name+'.itp')
+                        cisres = g_var.working_dir+residue_type+'/'+cisres_itp_name(residue_type)
+                        if os.path.exists(cisres):
+                            gen.file_copy_and_check(cisres, cisres_itp_name(residue_type))
+                            topologies_to_include.append(cisres_include(residue_type))
                     break
         #### copies across protein itp files and simplifies the names 
             if residue_type in ['PROTEIN', 'OTHER']:
@@ -491,7 +564,7 @@ def minimise_merged_pdbs(protein):
 def write_steered_mdp(loc, posres, time, timestep):
     if not os.path.exists(loc):
         with open(loc, 'w') as steered_md:
-            steered_md.write('define = '+posres+'\nintegrator = md\nnsteps = '+str(time)+'\ndt = '+str(timestep)+'\ncontinuation   = no\nconstraint_algorithm = lincs\n')
+            steered_md.write('define = '+(posres+' -DCISRES').strip()+'\nintegrator = md\nnsteps = '+str(time)+'\ndt = '+str(timestep)+'\ncontinuation   = no\nconstraint_algorithm = lincs\n')
             steered_md.write('nstxout-compressed = 1000\nnstenergy = 1000\nconstraints = h-bonds\nnstlist = 25\nrlist = 1.2\nrcoulomb = 1.2\nrvdw = 1.2\ncoulombtype  = PME\n')
             steered_md.write('pme_order = 4\nfourierspacing = 0.135\ntcoupl = v-rescale\ntc-grps = system\ntau_t = 0.1\nref_t = 310\npcoupl = no\n')
             steered_md.write('pbc = xyz\nDispCorr = no\ngen_vel = no\nrefcoord_scaling = all\ncutoff-scheme = Verlet\n')
