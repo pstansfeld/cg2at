@@ -6,7 +6,7 @@ build-backend = "setuptools.build_meta"
 # Published on PyPI as "cg2at2" ("cg2at" on PyPI belongs to an unrelated project).
 # The command and the installed Python package are still called cg2at.
 name = "cg2at2"
-version = "1.0.1"   # keep in step with VERSION in database/bin/g_var.py
+version = "1.0.2"   # keep in step with VERSION in database/bin/g_var.py
 authors = [{name = "Owen N. Vickery"}, {name = "Phillip J. Stansfeld", email = "phillip.stansfeld@warwick.ac.uk"}]
 maintainers = [{name = "Phillip J. Stansfeld", email = "phillip.stansfeld@warwick.ac.uk"}]
 description = "CG2AT2: fragment-based conversion of coarse-grained (e.g. Martini) systems to atomistic resolution."
