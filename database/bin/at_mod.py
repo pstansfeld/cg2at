@@ -222,14 +222,27 @@ def overlapping_atoms(tree):
     overlapped=list(overlapped_cut for overlapped_cut,_ in itertools.groupby(overlapped_cut))
     return overlapped
 
-def check_atom_overlap(coordinates):
+def check_atom_overlap(coordinates, fixed=None):
     """Jitter any overlapping atoms until all pairwise distances exceed g_var.args.ov.
 
-    The cKDTree is rebuilt once per pass over all overlaps rather than once
+    fixed: coordinates of atoms that are never moved but must not be overlapped either (the
+    massive dummies of rigid CH3/NH3 groups in virtual-site topologies); an atom on top of one
+    is moved off it. The cKDTree is rebuilt once per pass over all overlaps rather than once
     per atom move, which gives a significant speedup for large systems.
     """
-    tree = cKDTree(coordinates)
-    overlapped = overlapping_atoms(tree)
+    n = len(coordinates)
+    fixed = [] if fixed is None else list(fixed)
+    def build():
+        return cKDTree(np.array(list(coordinates) + fixed)) if fixed else cKDTree(coordinates)
+    def movable(groups):
+        out = []
+        for group in groups:
+            mobile = [i for i in group if i < n]
+            if mobile:
+                out.append(mobile + [i for i in group if i >= n])
+        return out
+    tree = build()
+    overlapped = movable(overlapping_atoms(tree))
     while len(overlapped) > 0:
         if len(overlapped) > 30:
             gen.print_progress('Fixing atom overlaps', 0, len(overlapped))
@@ -243,10 +256,10 @@ def check_atom_overlap(coordinates):
                 xyz_check = coordinates[ndx[0]] + np.random.uniform(-0.2, 0.2, 3)
             coordinates[ndx[0]] = xyz_check
         # Rebuild tree once per pass now that all atoms in this batch have moved.
-        tree = cKDTree(coordinates)
+        tree = build()
         if len(overlapped) > 30:
             gen.finish_progress('Fixing atom overlaps', len(overlapped))
-        overlapped = overlapping_atoms(tree)
+        overlapped = movable(overlapping_atoms(tree))
     return coordinates
 
 ## overlap end
@@ -421,6 +434,164 @@ def dihedral(a, b, c, d):
     w = b2 - np.dot(b2, b1) * b1
     return math.atan2(np.dot(np.cross(b1, v), w), np.dot(v, w))
 
+_stereo_cache = {}
+
+def stereo_template(resname, frag_template):
+#### sp3 stereocentres of the fragment (a carbon with three or four heavy neighbours and at most one
+#### hydrogen): (centre, three reference neighbours, fourth substituent, its hydrogens, handedness).
+#### The fourth substituent is the hydrogen, or for a quaternary carbon its least-connected heavy
+#### neighbour (e.g. a methyl), whose own hydrogens move with it.
+    if resname not in _stereo_cache:
+        coords, bonded = fragment_template(resname, frag_template)
+        hydrogens = {}
+        for group in frag_template.values():
+            for bead in group.values():
+                for number, atom in bead.items():
+                    if gen.is_hydrogen(atom['atom']):
+                        hydrogens[number] = np.array(atom['coord'], dtype=float)
+        h_numbers = list(hydrogens)
+        h_tree = cKDTree(np.array([hydrogens[n] for n in h_numbers])) if h_numbers else None
+        def attached(number):
+            if h_tree is None:
+                return []
+            return [h_numbers[i] for i in h_tree.query_ball_point(coords[number], 1.25 * g_var.sf)]
+        centres = []
+        for c in coords:
+            if not frag_atom_name(frag_template, c).startswith('C') or len(bonded[c]) < 3:
+                continue
+            hs = attached(c)
+            if len(bonded[c]) + len(hs) != 4 or len(hs) > 1:
+                continue
+            if hs:
+                fourth, carried, three = hs[0], [], sorted(bonded[c])
+            else:
+                fourth = min(bonded[c], key=lambda x: (len(bonded[x]), x))
+                if len(bonded[fourth]) > 1:
+                    continue
+                carried, three = attached(fourth), sorted(bonded[c] - {fourth})
+            v = [coords[x] - coords[c] for x in three]
+            volume = np.dot(v[0], np.cross(v[1], v[2])) / np.prod([np.linalg.norm(x) for x in v])
+            if abs(volume) > 0.1:
+                centres.append((c, three, fourth, carried, np.sign(volume)))
+        _stereo_cache[resname] = centres
+    return _stereo_cache[resname]
+
+def frag_atom_name(frag_template, number):
+    for group in frag_template.values():
+        for bead in group.values():
+            if number in bead:
+                return bead[number]['atom']
+    return ''
+
+def correct_stereocentres(residue, resname, frag_template):
+#### a placed residue whose stereocentre has the opposite handedness to the fragment (its substituents
+#### were fitted in different beads) is mended locally: the centre is reflected through the plane of
+#### its three reference neighbours, which keeps those three bonds, and the fourth substituent (with
+#### any hydrogens it carries) is put back opposite them at its bond length. CISRES then holds it.
+    for c, three, fourth, carried, sign in stereo_template(resname, frag_template):
+        if any(x not in residue for x in [c, fourth] + three + carried):
+            continue
+        X = {x: np.array(residue[x]['coord'], dtype=float) for x in [c, fourth] + three + carried}
+        v = [X[x] - X[c] for x in three]
+        if np.sign(np.dot(v[0], np.cross(v[1], v[2]))) == sign:
+            continue
+        normal = np.cross(X[three[1]] - X[three[0]], X[three[2]] - X[three[0]])
+        normal /= np.linalg.norm(normal)
+        new_c = X[c] - 2 * np.dot(X[c] - X[three[0]], normal) * normal
+        outward = new_c - np.mean([X[x] for x in three], axis=0)
+        new_fourth = new_c + np.linalg.norm(X[fourth] - X[c]) * outward / np.linalg.norm(outward)
+        shift = new_fourth - X[fourth]
+        residue[c]['coord'] = new_c
+        residue[fourth]['coord'] = new_fourth
+        for h in carried:
+            residue[h]['coord'] = X[h] + shift
+    return residue
+
+_planar_h_cache = {}
+
+def planar_hydrogens(resname, frag_template):
+#### hydrogens on planar centres of the fragment (an amide N-H, C=C-H or aromatic C-H: a parent with
+#### two heavy neighbours, this one hydrogen, and all three substituents in the parent's plane):
+#### (hydrogen, parent, the two heavy neighbours, bond length)
+    if resname not in _planar_h_cache:
+        coords, bonded = fragment_template(resname, frag_template)
+        hydrogens = {}
+        for group in frag_template.values():
+            for bead in group.values():
+                for number, atom in bead.items():
+                    if gen.is_hydrogen(atom['atom']):
+                        hydrogens[number] = np.array(atom['coord'], dtype=float)
+        h_numbers = list(hydrogens)
+        h_tree = cKDTree(np.array([hydrogens[n] for n in h_numbers])) if h_numbers else None
+        out = []
+        for p in coords:
+            if len(bonded[p]) != 2 or h_tree is None:
+                continue
+            hs = [h_numbers[i] for i in h_tree.query_ball_point(coords[p], 1.25 * g_var.sf)]
+            if len(hs) != 1:
+                continue
+            a, b = sorted(bonded[p])
+            v = [coords[a] - coords[p], coords[b] - coords[p], hydrogens[hs[0]] - coords[p]]
+            if abs(np.dot(v[0], np.cross(v[1], v[2]))) / np.prod([np.linalg.norm(x) for x in v]) < 0.1:
+                out.append((hs[0], p, a, b, np.linalg.norm(v[2])))
+        _planar_h_cache[resname] = out
+    return _planar_h_cache[resname]
+
+def place_planar_hydrogens(residue, resname, frag_template, scale=1.0):
+#### such a hydrogen is rebuilt on the outward bisector of its parent's two heavy bonds: fitted in a
+#### different bead from a neighbour (e.g. the previous residue's carbonyl C of an amide) it can land
+#### across that bond, where the minimisation cannot pull it out
+    for h, p, a, b, length in planar_hydrogens(resname, frag_template):
+        if any(x not in residue for x in (h, p, a, b)):
+            continue
+        P, A, B = [np.array(residue[x]['coord'], dtype=float) for x in (p, a, b)]
+        u = (P - A) / np.linalg.norm(P - A) + (P - B) / np.linalg.norm(P - B)
+        if np.linalg.norm(u) > 1e-6:
+            residue[h]['coord'] = P + scale * length * u / np.linalg.norm(u)
+    return residue
+
+def correct_minimised_residue(residue_type, pdb_in, pdb_out):
+#### applies correct_stereocentres and place_planar_hydrogens to every molecule of a per-residue
+#### structure (molecules in itp atom order, one after another); fragment atom -> itp position is by
+#### name when the itp names are unique, otherwise the fragment atom number is the itp index
+    location = gen.fragment_location(residue_type)
+    frag_template, _ = get_atomistic(location, residue_type)
+    names, in_atoms, molecules = {}, False, 0
+    with open(location[:-4]+'.itp') as itp_input:
+        for line in itp_input:
+            line_sep = line.split(';')[0].split()
+            if not line_sep:
+                continue
+            if line_sep[0] == '[':
+                in_atoms = line_sep[1] == 'atoms'
+                molecules += line_sep[1] == 'moleculetype'
+                continue
+            if in_atoms and molecules == 1 and line_sep[0].isdigit():
+                names.setdefault(line_sep[4], []).append(int(line_sep[0]))
+    n_atoms = sum(len(index) for index in names.values())
+    unique = all(len(index) == 1 for index in names.values())
+    position = {}
+    for group in frag_template.values():
+        for bead in group.values():
+            for number, atom in bead.items():
+                position[number] = (names[atom['atom']][0] if atom['atom'] in names else None) if unique else number
+    with open(pdb_in) as pdb_input:
+        lines = pdb_input.readlines()
+    atom_lines = [k for k, line in enumerate(lines) if line.startswith('ATOM')]
+    for start in range(0, len(atom_lines) - n_atoms + 1, n_atoms):
+        rows = atom_lines[start:start + n_atoms]
+        residue = {number: {'coord': np.array([float(lines[rows[p - 1]][30:38]), float(lines[rows[p - 1]][38:46]),
+                                                float(lines[rows[p - 1]][46:54])])}
+                   for number, p in position.items() if p is not None and p <= n_atoms}
+        residue = correct_stereocentres(residue, residue_type, frag_template)
+        residue = place_planar_hydrogens(residue, residue_type, frag_template, 1.0 / g_var.sf)
+        for number, p in position.items():
+            if p is not None and number in residue:
+                k = rows[p - 1]
+                lines[k] = lines[k][:30] + '{:8.3f}{:8.3f}{:8.3f}'.format(*residue[number]['coord']) + lines[k][54:]
+    with open(pdb_out, 'w') as pdb_output:
+        pdb_output.writelines(lines)
+
 def rotation_about_axis(axis, angle):
 #### row-vector rotation matrix (used as coord.dot(matrix)) for a right-handed turn about axis
     x, y, z = axis / np.linalg.norm(axis)
@@ -527,12 +698,14 @@ def merge_individual_chain_pdbs(file, end, res_type):
 
 def index_conversion_generate(merge, merge_coords):
     index_conversion = {}
-    coords = []
+    coords, dummies = [], []
     for at_val, atom in enumerate(merge):
         if not atom['atom_name'].startswith('M'):
             index_conversion[at_val] = len(coords)
             coords.append(merge_coords[at_val])
-    coords = check_atom_overlap(coords)
+        else:
+            dummies.append(merge_coords[at_val])
+    coords = check_atom_overlap(coords, dummies)
     return coords, index_conversion
 
 def write_pdb(merge, merge_coords, index_conversion, write_file):
@@ -790,27 +963,36 @@ def fix_threaded_lipids(lipid_atoms, merge, merge_coords):
             resname = get_np_resname(threaded[0]) 
             
             atoms = tree.query_ball_point(threaded[2], r=3)
+            P_count = None
             for at in atoms:
                 if merge[at]['residue_id'] != merge[threaded[0]]['residue_id']:
                     P_count = fetch_start_of_residue(at, merge)
                     break
+#### no other residue next to the stretched bond: it is not threaded through anything, just stretched,
+#### and is left to the NVT
+            if P_count is None:
+                continue
 
             NP_count = fetch_start_of_residue_np(threaded[0], resname)
             bb = []
-            if 'P_count' not in locals():
-                raise CG2ATError('There is an issue with the bond length detection')
             for at in merge[P_count:]:
                 if at['residue_id'] != merge[P_count]['residue_id']:
                     break
                 if at['atom_name'] in g_var.res_top[at['residue_name']]['ATOMS']:
                     bb.append([at['x'], at['y'], at['z']])
+#### only a lipid threaded through a residue with backbone atoms (a protein) can be pushed out; a
+#### stretched bond next to anything else (e.g. inside a glycolipid) is left to the minimisation
+            if not bb:
+                continue
             bb = np.mean(np.array(bb), axis=0)
+            if np.linalg.norm(threaded[2]-bb) < 1e-6:
+                continue
             BB_M3 = (threaded[2]-bb)/np.linalg.norm((threaded[2]-bb))      
             
             for heavy_atom in threaded[:2]:
                 merge_coords[heavy_atom] += BB_M3*3 
                 merge[heavy_atom]['x'], merge[heavy_atom]['y'], merge[heavy_atom]['z'] = merge_coords[heavy_atom]
-                for hydrogen in g_var.hydrogen[resname][heavy_atom-NP_count+1]:
+                for hydrogen in g_var.hydrogen[resname].get(heavy_atom-NP_count+1, []):
                     merge_coords[NP_count+hydrogen-1] += BB_M3*3 
                     merge[NP_count+hydrogen-1]['x'], merge[NP_count+hydrogen-1]['y'], merge[NP_count+hydrogen-1]['z'] = merge_coords[NP_count+hydrogen-1]
 
