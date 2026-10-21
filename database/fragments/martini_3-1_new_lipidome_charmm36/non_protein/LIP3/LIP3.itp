@@ -2060,3 +2060,8 @@ LIP3	     3
   190   192   188   191     2
   202   204   203   183     2
   223   225   221   224     2
+
+; Include heavy atom position restraint file
+#ifdef NP
+#include "LIP3_posre.itp"
+#endif

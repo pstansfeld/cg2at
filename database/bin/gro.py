@@ -108,14 +108,19 @@ def make_min(residue):#, fragments):
 #### makes em.mdp file for each residue
     if not os.path.exists('em_'+residue+'.mdp'):
         with open('em_'+residue+'.mdp','w') as em:
-            em.write('define = -DCISRES\n integrator = steep\nnsteps = 20000\nemtol = 750\nemstep = 0.001\ncutoff-scheme = Verlet\n')
+#### CISRES only where a topology can use it (non-protein residues and the merged system):
+#### GROMACS warns about defined macros that the topology never uses
+            define = '-DCISRES' if residue in g_var.np_residues or residue == 'merged_cg2at' else ''
+            em.write('define = '+define+'\n integrator = steep\nnsteps = 20000\nemtol = 750\nemstep = 0.001\ncutoff-scheme = Verlet\n')
 
 #### Double-bond restraints. Placing rigid fragments on CG beads leaves the bonds between
 #### beads stretched or compressed, and minimising that away can rotate C=C double bonds
-#### through their barrier (cis lipid tails come out trans) and can flip ring chairs. Each
-#### double bond in a non-protein fragment, and each saturated six-membered ring that is a
-#### chair in the fragment, is therefore held at its fragment dihedrals by dihedral restraints
-#### (CISRES) during the per-residue minimisation and the merged minimisation and NVT.
+#### through their barrier (cis lipid tails come out trans), can flip ring chairs and can invert
+#### stereocentres whose substituents lie in different beads (glycerol C2, sterol C13). Each
+#### double bond in a non-protein fragment, each saturated six-membered ring that is a chair in
+#### the fragment, and each sp3 stereocentre is therefore held at its fragment dihedrals by
+#### dihedral restraints (CISRES) during the per-residue minimisation and the merged
+#### minimisation and NVT.
 
 def cisres_itp_name(residue_type):
     return gen.swap_to_solvent(residue_type)+'_cisres.itp'
@@ -133,7 +138,7 @@ def write_cisres(residue_type, itp_file):
                 molecules += line_sep[1] == 'moleculetype'
                 continue
             if in_atoms and molecules == 1 and line_sep[0].isdigit():
-                names.setdefault(line_sep[4], int(line_sep[0]))
+                names.setdefault(line_sep[4], []).append(int(line_sep[0]))
     frag_template, _ = at_mod.get_atomistic(gen.fragment_location(residue_type), residue_type)
     coords, bonded = at_mod.fragment_template(residue_type, frag_template)
     atom_names, hydrogens = {}, []
@@ -143,6 +148,16 @@ def write_cisres(residue_type, itp_file):
                 atom_names[number] = atom['atom']
                 if gen.is_hydrogen(atom['atom']):
                     hydrogens.append(np.array(atom['coord'], dtype=float))
+#### fragment atom -> itp index: by name when every itp name is unique, otherwise (itps that reuse
+#### names, e.g. multi-unit glycans) the fragment atom number is the itp index
+    unique = all(len(index) == 1 for index in names.values())
+    def itp_index(number):
+        if unique:
+            return names[atom_names[number]][0] if atom_names[number] in names else None
+        return number
+    def indices(quartet):
+        index = [itp_index(x) for x in quartet]
+        return None if None in index else index
 #### a carbon with three neighbours (hydrogens included) is sp2; two bonded sp2 carbons form a
 #### C=C (or aromatic) bond, while an ester carbonyl carbon is bonded to an sp3 carbon
     h_tree = cKDTree(np.array(hydrogens)) if hydrogens else None
@@ -159,10 +174,10 @@ def write_cisres(residue_type, itp_file):
                 continue
             for i in bonded[a] - {b}:
                 for l in bonded[b] - {a}:
-                    quartet = [atom_names[x] for x in (i, a, b, l)]
-                    if all(name in names for name in quartet):
+                    index = indices((i, a, b, l))
+                    if index:
                         phi = np.degrees(at_mod.dihedral(*[coords[x] for x in (i, a, b, l)]))
-                        restraints.append([names[name] for name in quartet] + [phi, 10.0])
+                        restraints.append(index + [phi, 10.0, 1000.0])
 #### saturated six-membered rings (sugars, inositol, steroid rings) that are chairs in the
 #### fragment: their ring torsions are held too, so the chair (and which chair) survives
     for ring in at_mod.six_membered_rings(bonded):
@@ -173,17 +188,41 @@ def write_cisres(residue_type, itp_file):
             continue
         for k in range(6):
             quartet = [ring[(k + m) % 6] for m in range(4)]
-            if all(atom_names[x] in names for x in quartet):
+            index = indices(quartet)
+            if index:
                 phi = np.degrees(at_mod.dihedral(*[coords[x] for x in quartet]))
-                restraints.append([names[atom_names[x]] for x in quartet] + [phi, 15.0])
+                restraints.append(index + [phi, 15.0, 1000.0])
+#### sp3 stereocentres (a carbon with three or four heavy neighbours and at most one hydrogen): the
+#### improper of its first three heavy neighbours and itself keeps the fragment's sign, so a centre
+#### whose substituents sit in different beads cannot come out inverted. Its force constant is far
+#### higher than the others: the stretched bonds between freshly placed beads pull hard enough to drag
+#### a substituent through to the wrong side against a weaker restraint. Its window (+-15 deg about the
+#### fragment's ~35 deg improper) also keeps the centre from being flattened
+    for c in coords:
+        if not atom_names[c].startswith('C') or len(bonded[c]) < 3 or neighbours(c) != 4:
+            continue
+        heavy = sorted(bonded[c], key=lambda x: (itp_index(x) is None, itp_index(x) or 0))[:3]
+        index = indices(heavy + [c])
+        if not index:
+            continue
+        phi = np.degrees(at_mod.dihedral(*[coords[x] for x in heavy + [c]]))
+        if abs(phi) >= 10:
+            restraints.append(index + [phi, 15.0, 'CHIRAL_K'])
     if not restraints:
         return False
     with open(g_var.working_dir+residue_type+'/'+cisres_itp_name(residue_type), 'w') as cisres:
-        cisres.write('; holds double bonds and chair rings at the fragment geometry during CG2AT minimisation/NVT\n')
+        cisres.write('; holds double bonds, chair rings and stereocentres at the fragment geometry during CG2AT minimisation/NVT\n')
+#### the stereocentre force constant is a macro: the first, soft pass of the per-residue minimisation
+#### sets it low (see minimise_merged); everywhere else it takes this default
+        cisres.write('#ifndef CHIRAL_K\n#define CHIRAL_K 20000.0\n#endif\n')
         cisres.write('[ dihedral_restraints ]\n; ai   aj   ak   al  type     phi  dphi   kfac\n')
-        for ai, aj, ak, al, phi, dphi in restraints:
-            cisres.write('{:5d}{:5d}{:5d}{:5d}    1 {:8.2f}  {:4.1f}  1000.0\n'.format(ai, aj, ak, al, phi, dphi))
+        for ai, aj, ak, al, phi, dphi, kfac in restraints:
+            kfac = kfac if isinstance(kfac, str) else '{:7.1f}'.format(kfac)
+            cisres.write('{:5d}{:5d}{:5d}{:5d}    1 {:8.2f}  {:4.1f}  {}\n'.format(ai, aj, ak, al, phi, dphi, kfac))
     return True
+
+#### referenced when a topology has no restraints, so the CISRES define is never reported as unused
+CISRES_UNUSED = '#ifdef CISRES\n; no double-bond, ring or stereocentre restraints\n#endif\n'
 
 def cisres_include(residue_type):
     return '#ifdef CISRES\n#include \"'+cisres_itp_name(residue_type)+'\"\n#endif\n'
@@ -417,8 +456,11 @@ def write_topol(residue_type, residue_number, chain):
                 if os.path.exists(directory[0]+residue_type+'/'+gen.swap_to_solvent(residue_type)+'.itp'):
                     itp_file = directory[0]+residue_type+'/'+gen.swap_to_solvent(residue_type)+'.itp'
                     topol_write.write('#include \"'+itp_file+'\"')
-                    if residue_type in g_var.np_residues and write_cisres(residue_type, itp_file):
-                        topol_write.write('\n'+cisres_include(residue_type))
+                    if residue_type in g_var.np_residues:
+                        if write_cisres(residue_type, itp_file):
+                            topol_write.write('\n'+cisres_include(residue_type))
+                        else:
+                            topol_write.write('\n'+CISRES_UNUSED)
                     found=True
                     break
             if not found:
@@ -448,6 +490,14 @@ def minimise_merged(residue_type, input_file):
     os.chdir(g_var.working_dir+residue_type)
     make_min(residue_type)
     write_topol(residue_type, g_var.system[residue_type], '')
+#### stereocentre restraints strong enough to stop inversions stall steepest descent while the bonds
+#### between freshly placed beads are still badly stretched, so a non-protein residue is first
+#### minimised with them soft, any centre that came out inverted is mended on the relaxed structure,
+#### and the strong restraints are applied from there
+    if residue_type in g_var.np_residues and os.path.exists(cisres_itp_name(residue_type)):
+        soft_input = soft_minimise(residue_type, input_file)
+        if soft_input:
+            input_file = soft_input
 #### grompp with merged system
     gromacs([g_var.args.gmx+' grompp '+
             '-po md_out-'+residue_type+' '+
@@ -461,6 +511,51 @@ def minimise_merged(residue_type, input_file):
     complete, success = gromacs([g_var.args.gmx+' mdrun -ntmpi 1 -v -pin on -deffnm '+residue_type+'_merged_min -c ../'+residue_type+'_merged.pdb', '../'+residue_type+'_merged.pdb'])
     os.chdir(g_var.working_dir)
     return success
+
+def em_pass(residue_type, mdp, define, input_file, name):
+#### one minimisation of a residue type with the given define; returns the output pdb (or None)
+#### and whether steepest descents reached emtol
+    if not os.path.exists(mdp):
+        with open('em_'+residue_type+'.mdp') as em, open(mdp, 'w') as out:
+            for line in em:
+                out.write('define = '+define+'\n' if line.startswith('define') else line)
+    output = residue_type+'_merged_'+name+'.pdb'
+    if not os.path.exists(output):
+        gromacs([g_var.args.gmx+' grompp '+
+                '-po md_out-'+residue_type+'_'+name+' '+
+                '-f '+mdp+' '+
+                '-p topol_'+residue_type+'.top '+
+                '-c '+input_file+' '+
+                '-o MIN/'+residue_type+'_merged_'+name+' -maxwarn 1', 'MIN/'+residue_type+'_merged_'+name+'.tpr'])
+        os.chdir('MIN')
+        gromacs([g_var.args.gmx+' mdrun -ntmpi 1 -v -pin on -deffnm '+residue_type+'_merged_'+name+' -c ../'+output, '../'+output])
+        os.chdir('..')
+    converged = False
+    log = 'MIN/'+residue_type+'_merged_'+name+'.log'
+    if os.path.exists(log):
+        with open(log) as log_input:
+            converged = any('converged to Fmax' in line for line in log_input)
+    return (output if os.path.exists(output) else None), converged
+
+def soft_minimise(residue_type, input_file):
+#### first pass: CISRES with the stereocentre force constant at 1000; returns the corrected structure.
+#### A badly tangled start (e.g. a large glycolipid) can stall even that pass: it is then untangled
+#### by one unrestrained minimisation, its stereocentres mended, and the soft pass run from there
+    fixed_pdb = residue_type+'_merged_soft_fixed.pdb'
+    if os.path.exists(fixed_pdb):
+        return fixed_pdb
+    soft_pdb, converged = em_pass(residue_type, 'em_'+residue_type+'_soft.mdp', '-DCISRES -DCHIRAL_K=1000.0', input_file, 'soft')
+    if not converged:
+        free_pdb, _ = em_pass(residue_type, 'em_'+residue_type+'_free.mdp', '', input_file, 'free')
+        if free_pdb:
+            at_mod.correct_minimised_residue(residue_type, free_pdb, residue_type+'_merged_free_fixed.pdb')
+            os.rename(soft_pdb, residue_type+'_merged_soft_stalled.pdb') if soft_pdb else None
+            soft_pdb, _ = em_pass(residue_type, 'em_'+residue_type+'_soft.mdp', '-DCISRES -DCHIRAL_K=1000.0',
+                                  residue_type+'_merged_free_fixed.pdb', 'soft')
+    if not soft_pdb:
+        return None
+    at_mod.correct_minimised_residue(residue_type, soft_pdb, fixed_pdb)
+    return fixed_pdb
 
 ################################################################ Gromacs for merged system
 
@@ -544,6 +639,8 @@ def write_merged_topol():
             topol_write.write('; Include force field parameters\n#include \"../FINAL/'+g_var.forcefield+'/forcefield.itp\"\n')
         for line in topologies_to_include:
             topol_write.write(line)
+        if not any('CISRES' in line for line in topologies_to_include):
+            topol_write.write(CISRES_UNUSED)
 
         topol_write.write('[ system ]\n; Name\nSomething clever....\n\n[ molecules ]\n; Compound        #mols\n')
     #### adds number of residues to the topology
@@ -556,6 +653,13 @@ def write_merged_topol():
                     topol_write.write(residue_type+'_'+str(unit)+'    1\n')    
         topol_write.write('\n#ifdef DISRES\n#include \"PROTEIN_disres.itp\"\n#endif')
 
+
+def require_output(output, step, log):
+#### a GROMACS step that later stages depend on must have written its output; otherwise stop
+#### with the log to read rather than carrying on and reporting success
+    if not os.path.exists(output):
+        raise GromacsError(step+' failed: GROMACS did not write '+output+'.\n'
+                           'See '+os.path.join(os.getcwd(), log)+' and '+os.path.join(os.getcwd(), 'gromacs_outputs'))
 
 def minimise_merged_pdbs(protein):
     print('\nMinimising merged atomistic files : '+protein[1:])
@@ -573,6 +677,7 @@ def minimise_merged_pdbs(protein):
 #### runs minimises final systems
 # removed flag -nt '+str(g_var.args.ncpus)+'
     gromacs([g_var.args.gmx+' mdrun -ntmpi 1 -v -pin on -deffnm merged_cg2at'+protein+'_minimised -c merged_cg2at'+protein+'_minimised.pdb', 'merged_cg2at'+protein+'_minimised.pdb'])
+    require_output('merged_cg2at'+protein+'_minimised.pdb', 'Minimisation of the merged system', 'merged_cg2at'+protein+'_minimised.log')
 
    
 def write_steered_mdp(loc, posres, time, timestep):
@@ -613,24 +718,35 @@ def run_nvt(input_file):
 #### trajectory-guided dihedral restraints use a longer NVT so the backbone can relax into the restrained φ/ψ
     dihres, nsteps = ('', 5000) if g_var.args.refine is None else (' -DDIHEDRALPOSRES', g_var.args.refine_nvt)
     if g_var.user_at_input and g_var.args.disre and g_var.gmx_version:
-        write_steered_mdp(g_var.merged_directory+'nvt.mdp', '-DDISRES -DPOSRESCA'+dihres, nsteps, 0.001)
+        posres = '-DDISRES -DPOSRESCA'+dihres
     elif 'PROTEIN' in g_var.system:
-        write_steered_mdp(g_var.merged_directory+'nvt.mdp', '-DPOSRESCA'+dihres, nsteps, 0.001)
+        posres = '-DPOSRESCA'+dihres
     else:
-        write_steered_mdp(g_var.merged_directory+'nvt.mdp', '', 5000, 0.001)
-    gromacs([g_var.args.gmx+' grompp'+
-            ' -po md_out-merged_cg2at_nvt'+
-            ' -f nvt.mdp'+
-            ' -p topol_final.top'+
-            ' -r '+input_file+'.pdb '+
-            ' -c '+input_file+'.pdb '+
-            ' -o NVT/merged_cg2at_de_novo_nvt'+
-            ' -maxwarn '+str(2), 'NVT/merged_cg2at_de_novo_nvt.tpr'])   
-    os.chdir(g_var.merged_directory+'NVT')
-    # removed flag -nt '+str(g_var.args.ncpus)+'
-    gromacs([g_var.args.gmx+' mdrun -ntmpi 1 -v -pin on -deffnm merged_cg2at_de_novo_nvt'+
-            ' -c merged_cg2at_de_novo_nvt.pdb -cpo merged_cg2at_de_novo_nvt.cpt'
-            , 'merged_cg2at_de_novo_nvt.pdb'])  
+        posres, nsteps = '', 5000
+#### a rare local blow-up in the first picoseconds (one strained chain left by the minimisation) stops
+#### mdrun without output; the same simulated time is then rerun once at half the timestep
+    for name, steps, timestep in (('nvt', nsteps, 0.001), ('nvt_halfstep', 2 * nsteps, 0.0005)):
+        os.chdir(g_var.merged_directory)
+        write_steered_mdp(g_var.merged_directory+name+'.mdp', posres, steps, timestep)
+        deffnm = 'merged_cg2at_de_novo_'+name
+        gromacs([g_var.args.gmx+' grompp'+
+                ' -po md_out-merged_cg2at_'+name+
+                ' -f '+name+'.mdp'+
+                ' -p topol_final.top'+
+                ' -r '+input_file+'.pdb '+
+                ' -c '+input_file+'.pdb '+
+                ' -o NVT/'+deffnm+
+                ' -maxwarn '+str(2), 'NVT/'+deffnm+'.tpr'])   
+        os.chdir(g_var.merged_directory+'NVT')
+        # removed flag -nt '+str(g_var.args.ncpus)+'
+        gromacs([g_var.args.gmx+' mdrun -ntmpi 1 -v -pin on -deffnm '+deffnm+
+                ' -c '+deffnm+'.pdb -cpo '+deffnm+'.cpt'
+                , deffnm+'.pdb'])  
+        if os.path.exists(deffnm+'.pdb'):
+            break
+        print('\nNVT with a '+str(timestep*1000)+' fs timestep failed; retrying at half the timestep')
+    gen.file_copy_and_check(deffnm+'.pdb', 'merged_cg2at_de_novo_nvt.pdb')
+    require_output('merged_cg2at_de_novo_nvt.pdb', 'NVT of the de novo system', deffnm+'.log')
     gen.file_copy_and_check('merged_cg2at_de_novo_nvt.pdb', g_var.final_dir+'final_cg2at_de_novo.pdb')    
     print('Completed NVT, please find final de_novo system: \n'+g_var.final_dir+'final_cg2at_de_novo.pdb')
 

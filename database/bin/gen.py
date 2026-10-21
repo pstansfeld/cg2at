@@ -15,11 +15,13 @@ from typing import Optional
 import g_var
 from exceptions import CG2ATError, InputError, TopologyError, FragmentNotFoundError, GromacsError
 
-# Former force field names accepted by -ff.  In CG2AT-lite charmm36-jul2022 was
-# renamed charmm36-cg2at; the full CG2AT database still ships a real
-# charmm36-jul2022.ff, which is always matched first, so the alias is only a
-# fallback for databases that lack it.
-FORCEFIELD_ALIASES = {'charmm36-jul2022': 'charmm36-cg2at'}
+# Former force field names accepted by -ff. CHARMM36 is shipped only as charmm36-cg2at
+# (CHARMM36m/CHARMM36 from the July 2022 toppar, with CG2AT's additions), so the earlier
+# CHARMM36 releases are mapped to it. The LJ-PME variants are not aliased: they need
+# LJ-PME run settings, so silently swapping them would change the model.
+FORCEFIELD_ALIASES = {name: 'charmm36-cg2at' for name in
+                      ['charmm36-jul2022', 'charmm36-jul2021', 'charmm36-jul2020',
+                       'charmm36-jul2020-updated', 'charmm36-mar2019', 'charmm36-mar2019-updated']}
 
 def check_alternate_resname(resname: str) -> str:
     if resname in g_var.alt_res_name:

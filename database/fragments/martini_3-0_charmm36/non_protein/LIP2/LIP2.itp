@@ -2537,7 +2537,7 @@ LIP2               3
   265   267   263   266     2 
   267   269   265   268     2 
 
-; Include Position restraint file
-#ifdef POSRES
-#include "LIP2_posres.itp"
+; Include heavy atom position restraint file
+#ifdef NP
+#include "LIP2_posre.itp"
 #endif

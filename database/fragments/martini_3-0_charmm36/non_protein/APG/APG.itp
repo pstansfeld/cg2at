@@ -1281,4 +1281,7 @@ APG              3
    35    34    37    36     2 
    44    43    46    45     2 
 
-
+; Include heavy atom position restraint file
+#ifdef NP
+#include "APG_posre.itp"
+#endif

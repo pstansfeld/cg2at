@@ -14,6 +14,7 @@
 
 #include "ffnonbonded.itp"
 #include "ffbonded.itp"
+#include "ffbonded_additions.itp"
 ; implicit solvent parameters are not supported as of GROMACS 2019:
 ; https://manual.gromacs.org/documentation/2019/release-notes/2019/major/removed-functionality.html
 
