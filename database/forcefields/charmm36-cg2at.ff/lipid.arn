@@ -1,0 +1,10 @@
+; atom renaming specification
+; residue gromacs    forcefield
+CYSD       H          HN
+CYSF       H          HN
+CYSG       H          HN
+CYSL       H          HN
+CYSP       H          HN
+CYST       H          HN
+GLYM       H          HN
+LYSM       H          HN
